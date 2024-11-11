@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulletin - Congregation Bais Yisroel</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Additional styles for calendar layout */
+        .calendar-container {
+            width: 100%;
+            max-width: 800px;
+            height: 600px;
+            border: 1px solid gray;
+            padding: 10px;
+            box-sizing: border-box;
+            margin-left: 0; /* No left margin needed */
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer-container">
+        <div class="container">
+            <header>
+                <nav class="navbar">
+                    <ul>
+                        <li><a href="home.html" class="nav-button">Home</a></li>
+                        <li><a href="events.html" class="nav-button active">Events</a></li>
+                        <li><a href="bulletin.html" class="nav-button">Bulletin</a></li>
+                        <li2 class="highlighted-buttons"><a href="community.html" class="nav-button active">Community</a></li2>
+                        <li class="highlighted-buttons"><a href="subscribe.html" class="nav-button active">Subscribe</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="/Users/michalrunge/bais_yisroel_website_2.0/data/frontend/Bais-Yisroel-logo.png" alt="Congregation Bais Yisroel">
+                    </a>
+                </div>
+            </header>
+        </div>
+        
+        <div class="separate">
+            <div class="content-wrapper">
+                <div class="calendar-container">
+                    <iframe src="https://calendar.google.com/calendar/embed?src=108b7ae5c30c68449372821128d0147dba38392b443b12276919b9eca40b4292%40group.calendar.google.com&ctz=America%2FChicago" 
+                            frameborder="0" 
+                            scrolling="no"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>Congregation Bais Yisroel<br>
+        4221 Sunset Boulevard, Minneapolis, MN 55416<br>
+        PH: (952)-926-7867 || <a href="mailto:office@baisyisroel.org">Office Email</a></p>
+    </footer>
+</body>
+</html>
