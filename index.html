@@ -17,30 +17,36 @@
                         <li><a href="bulletin.html" class="nav-button">Bulletin</a></li>
                         <li2 class="highlighted-buttons"><a href="community.html" class="nav-button active">Community</a></li2>
                         <li class="highlighted-buttons"><a href="subscribe.html" class="nav-button active">Subscribe</a></li>
+                        <li class="highlighted-buttons"><a href="https://members.baisyisroel.org/payment.php" class="nav-button active">Donate</a></li>
                     </ul>
                 </nav>
                 
                 <div class="logo">
-                    <img src="Bais-Yisroel-logo.png" alt="Congregation Bais Yisroel">
-                </div>
+                    <a href="index.html">
+                        <img src="images/Bais-Yisroel-logo.png" alt="Congregation Bais Yisroel">
+                    </a>                </div>
             </header>
         </div>
 
         <div class="separate">
             <div class="content-wrapper">
                 <div class="left-image">
-                    <img src="bais-shul.jpeg" alt="Inside Shul">
+                    <img src="images/bais-shul.jpeg" alt="Inside Shul">
                 </div>
                 <section class="week-schedule">
-                    <h2>THIS WEEK: XXXXX </h2>
+                    <h2>THIS WEEK: <span id="weekRange">Loading...</span></h2>
+
                     <div class="schedule-details">
-                        <p><strong>Sunday Early Mincha</strong> XXXXX </p>
-                        <p><strong>Sunday-Thursday Weekday Mincha + Maariv</strong> XXXXX </p>
-                        <p><strong>Shabbos Parshas</strong> XXXXX </p>
-                        <p><strong>Erev Shabbos,  XXXXX </strong></p>
-                        <p>Early Mincha / Candle Lighting <span> XXXXX </span></p>
-                        <p>Erev Shabbos Regular Mincha / Candle Lighting <span> XXXXX </span></p>
+                        <p><strong>Sunday Early Mincha:</strong> <span id="sundayEarlyMincha">Loading...</span></p>
+                        <p><strong>Sunday-Thursday Weekday Mincha + Maariv:</strong> <span id="weekdayMinchaMaariv">Loading...</span></p>
+                        <p><strong>Shabbos Parshas:</strong> <span id="shabbosParsha">Loading...</span></p>
+                        <p><strong>Erev Shabbos:</strong> <span id="erevShabbosDate">Loading...</span></p>
+                        <p>Early Mincha / Candle Lighting: <span id="earlyMinchaCandle">Loading...</span></p>
+                        <p>Erev Shabbos Regular Mincha / Candle Lighting: <span id="regularMinchaCandle">Loading...</span></p>
                     </div>
+                    
+                    <script src="script.js"></script>
+            
                     <div class="schedule-buttons">
                         <a href="#" class="button full-schedule">Full Schedule</a>
                         <a href="#" class="button shabbos-observer">Shabbos Observer Weekly Newsletter</a>

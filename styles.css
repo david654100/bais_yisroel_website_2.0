@@ -1,17 +1,15 @@
 body {
     font-family: 'Open Sans', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #e3e5e6;
-    color: #333;
+    background-color: #E0E1DD;
+    color: #0D1B2A;
 }
 
 .outer-container {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
-    background-color: #e3e5e6;
+    padding: 2px;
+    background-color: #E0E1DD;
 }
 
 .container {
@@ -22,8 +20,8 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 20px;
-    margin-bottom: 20px;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
 }
 
 .navbar {
@@ -44,22 +42,22 @@ header {
 
 .navbar ul li {
     margin: 0 15px;
-    font-size: 20px;
+    font-size: 22px;
     border-bottom: 3px solid transparent;
     margin-right: 20px;
 }
 
 .navbar li2 {
-    padding-left: 250px;
+    padding-left: 150px;
     margin: 0 15px;
-    font-size: 20px;
+    font-size: 22px;
     border-bottom: 3px solid transparent;
     margin-right: 20px;
 }
 
 .nav-button {
     text-decoration: none;
-    color: black;
+    color: #0D1B2A;
     font-weight: bold;
     padding: 8px 10px;
     border-radius: 8px;
@@ -67,29 +65,32 @@ header {
 }
 
 .nav-button:hover {
-    background-color: #5A7D8D;
-    color: #e3e5e6;
+    background-color: #415A77;
+    color: #E0E1DD;
 }
 
 .highlighted-buttons {
     display: flex;
     gap: 15px;
-    color: #4A6878;
+    color: #415A77;
     border-radius: 5px;
-    background-color: #e3e5e6;
+    background-color: #E0E1DD;
     align-items: center;
     margin-right: 20px;
 }
 
 .highlighted-buttons .nav-button {
     padding: 5px 10px;
-    border: 3px solid #5A7D8D;
+    border: 3px solid #415A77;
 }
 
 .logo img {
-    max-width: 150px;
-    border: 2px solid gray;
-    padding: 5px;
+    margin-top: 20px;
+    position: relative;
+    top: 20px;
+    max-width: 105px;
+    border: 2px solid #0D1B2A;
+    padding: 3px 10px;
     border-radius: 5px;
 }
 
@@ -113,21 +114,29 @@ header {
 .left-image img {
     width: 100%;
     border-radius: 5px;
-    border: 2px solid gray;
+    border: 2px solid #0D1B2A;
 }
 
 .week-schedule {
     flex: 2;
     padding: 25px;
-    background-color: #e3e5e6;
-    border: 2px solid gray;
+    padding-bottom: 2.3rem;
+    background-color: #E0E1DD;
+    border: 2px solid #0D1B2A;
     border-radius: 5px;
 }
 
 .week-schedule h2 {
-    color: #5A7D8D;
+    color: #415A77;
     margin-bottom: 20px;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
+}
+
+.week-schedule h3 {
+    color: #415A77;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+    font-size: .8rem;
 }
 
 .schedule-details {
@@ -140,7 +149,7 @@ header {
 }
 
 .schedule-details p span {
-    color: #5A7D8D;
+    color: #415A77;
     font-weight: bold;
 }
 
@@ -152,7 +161,7 @@ header {
 
 .button {
     padding: 15px;
-    background-color: #5A7D8D;
+    background-color: #415A77;
     color: #FFF;
     text-align: center;
     border-radius: 5px;
@@ -163,98 +172,26 @@ header {
 }
 
 .button:hover {
-    background-color: #4A6878;
+    background-color: #1B263B;
 }
 
 .footer {
     margin-top: 40px;
-    background-color: #e3e5e6;
-    color: black;
+    background-color: #E0E1DD;
+    color: #0D1B2A;
     text-align: center;
     border-radius: 5px;
     padding: 5px;
-    border: 2px solid gray;
+    border: 2px solid #0D1B2A;
 }
 
 .footer a {
-    color: black;
+    color: #0D1B2A;
     text-decoration: underline;
 }
 
 .footer a:hover {
     text-decoration: none;
-}
-
-.about-box {
-    flex: 2;
-    padding: 10px;
-    background-color: #e3e5e6;
-    border: 2px solid gray;
-    border-radius: 5px;
-    text-align: justify;
-    font-size: 15px;
-}
-
-.about-box h2 {
-    color: #5A7D8D;
-    margin-bottom: 20px;
-    font-size: 1.8rem;
-    text-align: center;
-}
-
-.community, .visitors, .events, .info {
-    flex: 2;
-    padding: 25px;
-    background-color: #e3e5e6;
-    border: 2px solid gray;
-    border-radius: 5px;
-    font-size: larger;
-}
-
-.community h2, .visitors h2, .events h2, .info h2, .about-box h2 {
-    color: #5A7D8D;
-    margin-bottom: 20px;
-    font-size: 2.3rem;
-    padding-right: 20px;
-}
-
-.community ul, .visitors ul,
-.events ul, .info ul{
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.community ul li a, .visitors ul li a,
-.events ul li a, .info ul li a {
-    display: block;
-    padding: 10px 15px;
-    background-color: #e3e5e6;
-    color: black;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-    
-}
-
-.community ul li a:hover, .visitors ul li a:hover, 
-.events ul li a:hover, .info ul li a:hover {
-    background-color: #5A7D8D;
-}
-
-/* .visitors {
-    padding: 20px;
-    padding-bottom: 76px;
-    padding-top: 20px;
-} */
-
-.events {
-    padding: 20px;
-    padding-bottom: 47px;
-    padding-top: 25px;
 }
 
 .separate {
@@ -277,13 +214,13 @@ header {
 .subscribe-form {
     flex: 2;
     padding: 50px;
-    background-color: #e3e5e6;
-    border: 2px solid gray;
+    background-color: #E0E1DD;
+    border: 2px solid #0D1B2A;
     border-radius: 5px;
 }
 
 .subscribe-form h2 {
-    color: #5A7D8D;
+    color: #415A77;
     margin-bottom: 20px;
     font-size: 1.8rem;
 }
@@ -311,12 +248,12 @@ p.permission {
     width: 100%;
     padding: 8px;
     border-radius: 5px;
-    border: 2px solid gray;
+    border: 2px solid #0D1B2A;
 }
 
 .ctct-form-button {
     padding: 15px;
-    background-color: #5A7D8D;
+    background-color: #415A77;
     color: #FFF;
     text-align: center;
     border-radius: 5px;
@@ -328,5 +265,124 @@ p.permission {
 }
 
 .ctct-form-button:hover {
-    background-color: #4A6878;
+    background-color: #415A77;
+}
+
+.about-box {
+    flex: 2;
+    padding: 10px;
+    background-color: #E0E1DD;
+    border: 2px solid #0D1B2A;
+    border-radius: 5px;
+    text-align: justify;
+    font-size: 15px;
+}
+
+.about-box h2 {
+    color: #415A77;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.community, .visitors, .events, .info {
+    flex: 2;
+    padding: 25px;
+    background-color: #E0E1DD;
+    border: 2px solid #0D1B2A;
+    border-radius: 5px;
+    font-size: larger;
+}
+
+.community h2, .visitors h2, .events h2, .info h2, .about-box h2 {
+    color: #415A77;
+    margin-bottom: 20px;
+    font-size: 2.3rem;
+    padding-right: 20px;
+}
+
+.community ul, .visitors ul,
+.events ul, .info ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.community li a, .visitors ul li a,
+.events ul li a, .info ul li a, .collapsible {
+    display: block;
+    padding: 10px 15px;
+    background-color: #E0E1DD;
+    color: #0D1B2A;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    
+}
+
+.community ul li a:hover, .visitors ul li a:hover, 
+.events ul li a:hover, .info ul li a:hover, .collapsible:hover {
+    background-color: #415A77;
+}
+
+.events {
+    padding: 20px;
+    padding-bottom: 47px;
+    padding-top: 25px;
+}
+
+.separate-events {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding-top: 30px;
+    padding-bottom: 25px;
+}
+
+.separate {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.content-wrapper {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.break {
+    padding: 10px;
+}
+
+.collapsible {
+    background-color: #E0E1DD;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    font-size: 1.3rem;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #0D1B2A;
+    font-weight: bold;
+    padding: 8px 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.collapsible:hover {
+    background-color: #415A77;
+}
+
+.content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
 }
