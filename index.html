@@ -11,22 +11,23 @@
         <div class="container">
             <header>
                 <nav class="navbar">
-                    <ul>
+                    <div class="logo" onclick="toggleNavbar()">
+                        <a href="index.html">
+                            <img id="logo-img" src="images/Bais-Yisroel-logo.png" alt="Congregation Bais Yisroel">
+                        </a>                
+                    </div>
+                    <ul class="nav-menu">
                         <li><a href="index.html" class="nav-button">Home</a></li>
                         <li><a href="events.html" class="nav-button">Events</a></li>
-                        <li><a href="bulletin.html" class="nav-button">Bulletin</a></li>
-                        <li2 class="highlighted-buttons"><a href="community.html" class="nav-button active">Community</a></li2>
-                        <li class="highlighted-buttons"><a href="subscribe.html" class="nav-button active">Subscribe</a></li>
-                        <li class="highlighted-buttons"><a href="https://members.baisyisroel.org/payment.php" class="nav-button active">Donate</a></li>
+                        <li><a href="information.html" class="nav-button">Information</a></li>
+                        <li><a href="community.html" class="nav-button">Community</a></li>
+                        <li><a href="subscribe.html" class="nav-button highlighted">Subscribe</a></li>
+                        <li><a href="https://members.baisyisroel.org/payment.php" class="nav-button highlighted">Donate</a></li>
                     </ul>
-                </nav>
-                
-                <div class="logo">
-                    <a href="index.html">
-                        <img src="images/Bais-Yisroel-logo.png" alt="Congregation Bais Yisroel">
-                    </a>                </div>
+                </nav>                
             </header>
         </div>
+        
 
         <div class="separate">
             <div class="content-wrapper">
@@ -34,18 +35,23 @@
                     <img src="images/bais-shul.jpeg" alt="Inside Shul">
                 </div>
                 <section class="week-schedule">
-                    <h2>THIS WEEK: <span id="weekRange">Loading...</span></h2>
+                    <h2><strong>This week: <span id="weekRange">Loading...</span></h2>
 
                     <div class="schedule-details">
-                        <p><strong>Sunday Early Mincha:</strong> <span id="sundayEarlyMincha">Loading...</span></p>
-                        <p><strong>Sunday-Thursday Weekday Mincha + Maariv:</strong> <span id="weekdayMinchaMaariv">Loading...</span></p>
-                        <p><strong>Shabbos Parshas:</strong> <span id="shabbosParsha">Loading...</span></p>
-                        <p><strong>Erev Shabbos:</strong> <span id="erevShabbosDate">Loading...</span></p>
-                        <p>Early Mincha / Candle Lighting: <span id="earlyMinchaCandle">Loading...</span></p>
-                        <p>Erev Shabbos Regular Mincha / Candle Lighting: <span id="regularMinchaCandle">Loading...</span></p>
+                        <p><strong>Today's Date:</strong> <span id="getTodayDate">Loading...</span></p>
+                        <p><strong>Hebrew Date:</strong> <span id="hebrewDate">Loading...</span></p>
+                        <p><strong>Early Shacharis:</strong> <span id="earlyMorningShacharis">Loading...</span></p>
+                        <p><strong>Shacharis:</strong> <span id="morningShacharis">Loading...</span></p>
+                        <p id="earlyMinchaRow" style="display: none;">
+                            <strong>Sunday Early Mincha:</strong> <span id="earlyMincha">Loading...</span>
+                        </p>
+                        <p><strong>Sunday-Thursday Weekday Mincha:</strong> <span id="weekdayMinchaMaariv">Loading...</span></p>
+                        <p><strong>Erev Shabbos Regular Mincha / Candle Lighting:</strong> <span id="candleLighting">Loading...</span></p>
+                        <p><strong>Parsha:</strong> <span id="parsha">Loading...</span></p>
+                        <p><strong>Havdalah:</strong> <span id="havdalah">Loading...</span></p>
                     </div>
-                    
-                    <script src="script.js"></script>
+                
+                    <script src="script.js" defer></script>
             
                     <div class="schedule-buttons">
                         <a href="#" class="button full-schedule">Full Schedule</a>
