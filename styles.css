@@ -9,6 +9,8 @@ body {
     max-width: fit-content;
     margin: 0 auto;
     background-color: #e6e7e3;
+    display: flex;
+  flex-wrap: wrap;
 }
 
 header {
@@ -28,7 +30,7 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
-    padding-right: 6rem;
+    padding-left: 5rem;
 }
 
 .logo img {
@@ -86,7 +88,6 @@ header {
     color: white;
     background-color: #0D1B2A;
     border: 3px solid #0D1B2A;
-    font-size: 1.4rem;
 }
 
 .hamburger {
@@ -121,22 +122,27 @@ header {
     display: flex;
     justify-content: center;
     align-items: stretch;
-    padding-left: 1rem;
+    padding-left: 4rem;
     padding-right: 3rem;
 }
 
+.refresh-image {
+    padding-right: 2rem;
+}
+
 .left-image {
-    flex: 1.25;
     display: inline-flex;
-    align-items: center;}
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
 
 .left-image img {
-    width: 100%;
     border-radius: 5px;
     border: 2px solid #0D1B2A;
-    width: 100%;
+    width: 125%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; 
 }
 
 .week-schedule {
@@ -182,6 +188,7 @@ header {
 .schedule-buttons {
     display: flex;
     flex-direction: column;
+
     gap: 15px;
 }
 
@@ -222,13 +229,16 @@ header {
 
 .content-wrapper {
     display: flex;
-    gap: 2rem; 
-    /* align-items: stretch; */
     padding-left: 3rem;
+    flex-wrap: wrap;
+    /* justify-content: space-between; */
+    justify-content: center;
+    align-items: stretch;
+    gap: 1rem;
 }
 
 .subscribe-form {
-    flex: 2;
+    width: 800px; /* Set a fixed width */
     padding: 50px;
     background-color: #e6e7e3;
     border: 2px solid #0D1B2A;
@@ -248,6 +258,12 @@ header {
 
 p.permission {
     font-size: small;
+}
+
+.shabbos p {
+    text-align: center;
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
 }
 
 .ctct-form-field {
@@ -284,6 +300,13 @@ p.permission {
     background-color: #415A77;
 }
 
+.separate {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 1rem;
+}
+
 .separate-community {
     display: flex;
     justify-content: center;
@@ -299,7 +322,18 @@ p.permission {
     overflow-wrap: break-word;
 }
 
-.about-box, .visitors, .community, .events, .info {
+.visitors-buttons, .community-buttons,
+ .events-buttons, .info-buttons,
+ .info-dvar-buttons, .events-dvar-buttons,
+ .halachos-dvar-buttons, .shabbos-dvar-buttons {
+    flex: 1;
+    padding: 1.5rem;
+    background-color: #e6e7e3;
+    font-size: larger;
+    text-align: center;
+}
+
+.about-box, .visitors, .community, .events, .info, .halachos, .shabbos {
     flex: 1;
     padding: 1.5rem;
     background-color: #e6e7e3;
@@ -309,14 +343,16 @@ p.permission {
     text-align: justify;
 }
 
-.about-box h2, .visitors h2, .community h2, .events h2, .info h2 {
+.about-box h2, .visitors h2, .community h2,
+ .events h2, .info h2, .halachos h2, .shabbos h2 {
     color: #415A77;
     margin-bottom: 1rem;
     font-size: 2.3rem;
     text-align: center;
 }
 
-.community ul, .visitors ul, .events ul, .info ul {
+.community ul, .visitors ul, .events ul,
+ .info ul, .halachos ul, .shabbos ul {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -325,7 +361,9 @@ p.permission {
     gap: 1rem;
 }
 
-.community ul li a, .visitors ul li a, .events ul li a, .info ul li a {
+.community ul li a, .visitors ul li a, .events ul li a,
+ .info ul li a, .halachos ul li a, .shabbos ul li a,
+ .halachos ul a, .shabbos ul a{
     display: block;
     background-color: #e6e7e3;
     color: #0D1B2A;
@@ -335,7 +373,8 @@ p.permission {
 }
 
 .community ul li a:hover, .visitors ul li a:hover, 
-.events ul li a:hover, .info ul li a:hover {
+.events ul li a:hover, .info ul li a:hover,
+.halachos ul a:hover, .shabbos ul a:hover {
     background-color: #415A77;
     color: white;
 }
@@ -345,6 +384,7 @@ p.permission {
     justify-content: center;
     align-items: stretch;
     gap: 1rem;
+    flex: 1;
 }
 
 .events {
@@ -364,7 +404,6 @@ p.permission {
     text-align: left;
     border: none;
     outline: none;
-    font-size: 1.3rem;
     margin-top: 10px;
     text-decoration: none;
     color: #0D1B2A;
@@ -372,10 +411,12 @@ p.permission {
     padding: 8px 10px;
     border-radius: 8px;
     transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 1.3rem;
 }
 
 .collapsible:hover {
     background-color: #415A77;
+    color: white;
 }
 
 .content {
@@ -393,12 +434,11 @@ p.permission {
 
 .calendar-container {
     width: 100%;
-    max-width: 800px;
+    /* max-width: 600px; */
     height: 600px;
-    border: 1px solid gray;
-    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #0D1B2A;
     box-sizing: border-box;
-    margin-left: 0;
 }
 
 iframe {

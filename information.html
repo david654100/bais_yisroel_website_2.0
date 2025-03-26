@@ -1,65 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Events - Congregation Bais Yisroel</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="mobile.css" media="screen and (max-width: 768px)">
 </head>
+
 <body>
     <div class="outer-container">
-        <div class="container">
-            <header>
-                <nav class="navbar">
-                    <div class="logo" onclick="toggleNavbar()">
-                        <a href="index.html">
-                            <img id="logo-img" src="images/Bais-Yisroel-logo.png" alt="Congregation Bais Yisroel">
-                        </a>                
-                    </div>
-                    <ul class="nav-menu">
-                        <li><a href="index.html" class="nav-button">Home</a></li>
-                        <li><a href="events.html" class="nav-button">Events</a></li>
-                        <li><a href="information.html" class="nav-button">Information</a></li>
-                        <li><a href="community.html" class="nav-button">Community</a></li>
-                        <li><a href="subscribe.html" class="nav-button highlighted">Subscribe</a></li>
-                        <li><a href="https://members.baisyisroel.org/payment.php" class="nav-button highlighted">Donate</a></li>
-                    </ul>
-                </nav>                
-            </header>
-        </div>
 
-        <div class="separate-events">
-            <div class="content-wrapper">
+        <header>
+            <nav class="navbar">
+                <div id="menu-toggle" class="logo">
+                    <img id="logo-img" src="images/Bais-Yisroel-logo.png" alt="Congregation Bais Yisroel">
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-button">Home</a></li>
+                    <li><a href="information.html" class="nav-button">Information</a></li>
+                    <li><a href="community.html" class="nav-button">Community</a></li>
+                    <li><a href="subscribe.html" class="nav-button">Subscribe</a></li>
+                    <li><a href="https://members.baisyisroel.org/payment" class="nav-button">Donate</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="separate-community">
+
+                <section class="info">
+                    <h2>Information</h2>
+                    <section class="info-buttons">
+                        <ul>
+                            <li>
+                                <a href="https://docs.google.com/forms/d/e/1FAIpQLSduAu3mxKqjzvxtSBUDGs-6zGZc8vAxAWYrOhn0l51JmlWpJw/viewform?vc=0&c=0&w=1&flr=0"
+                                    target="_blank" class="nav-button-events active">Camp Achim Jr. Grade 1-4, Registration 2024</a>
+                            </li>
+                            <li>
+                                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdzcsxTYyu1fIp8dzxFcKDw320YECOxqsMiMYOMnN1nkzW9Rw/viewform?vc=0&c=0&w=1&flr=0"
+                                    target="_blank" class="nav-button-events active">Camp Achim Sr. Division Grade 5-8, Registration 2024</a>
+                            </li>
+                            <li>
+                                <a href="https://docs.google.com/forms/d/1I8qcV5pVYkm9GZ87dC-19zGR6dgJLiqXlLAptT09dNI/viewform?edit_requested=true"
+                                    target="_blank" class="nav-button-events active">Camp Ashira Grade 1-8, Registration 2024</a>
+                            </li>
+                            <li>
+                                <a href="https://www.baisyisroel.org/documents/5784/zmanim_5784.pdf"
+                                    target="_blank" class="nav-button-events active">Zmanim 5784 PDF</a>
+                            </li>
+                        </ul>
+                    </section>
+                </section>
+
                 <section class="events">
                     <h2>Events and Updates</h2>
-                    <ul>
-                        <li><a href="dvar.html" class="nav-button-events active">Dvar Torahs</a></li>
-                        <li><a href="halachos.html" class="nav-button-events active">Halachos</a></li>
-                        <li><a href="https://www.baisyisroel.org/documents/Sponsorshipposter.jpg" class="nav-button-events active">Sponsorship Opportunities</a></li>
-                        <li><a href="https://www.baisyisroel.org/documents/5784/EruvUpdate.pdf" class="nav-button-events active">Updated Eruv Map</a></li>
-                    </ul>
+                    <section class="events-buttons">
+                        <ul>
+                            <li><a href="dvar.html" class="nav-button-events active">Dvar Torahs</a></li>
+                            <li><a href="halachos.html" class="nav-button-events active">Halachos</a></li>
+                            <li><a href="https://www.baisyisroel.org/documents/Sponsorshipposter.jpg" class="nav-button-events active">Sponsorship Opportunities</a></li>
+                        </ul>
+                    </section>
                 </section>
-                <section class="info">
-                    <h2>Important Information</h2>
-                    <ul>
-                        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSduAu3mxKqjzvxtSBUDGs-6zGZc8vAxAWYrOhn0l51JmlWpJw/viewform?vc=0&c=0&w=1&flr=0" 
-                            target="_blank" class="nav-button-events active">Camp Achim Jr. Grade 1-4, Registration 2024</a></li>
-                        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSdzcsxTYyu1fIp8dzxFcKDw320YECOxqsMiMYOMnN1nkzW9Rw/viewform?vc=0&c=0&w=1&flr=0" 
-                            target="_blank" class="nav-button-events active">Camp Achim Sr. Division Grade 5-8, Registration 2024</a></li>
-                        <li><a href="https://docs.google.com/forms/d/1I8qcV5pVYkm9GZ87dC-19zGR6dgJLiqXlLAptT09dNI/viewform?edit_requested=true" 
-                            target="_blank" class="nav-button-events active">Camp Ashira Grade 1-8, Registration 2024</a></li>
-                        <li><a href="https://www.baisyisroel.org/documents/5784/zmanim_5784.pdf" 
-                            target="_blank" class="nav-button-events active">Zmanim 5784 PDF</a></li>
-                    </ul>
-                </section>                
-            </div>
+
         </div>
+
     </div>
-    <br>
+
     <footer class="footer">
         <p>Congregation Bais Yisroel<br>
-        4221 Sunset Boulevard, Minneapolis, MN 55416<br>
-        PH: (952)-926-7867 || <a href="mailto:office@baisyisroel.org">Office Email</a></p>
+            4221 Sunset Boulevard, Minneapolis, MN 55416<br>
+            Phone Number: (952)-926-7867 || <a href="mailto:office@baisyisroel.org">Office Email</a>
+        </p>
     </footer>
+
+    <script src="script.js" defer></script>
+    <script src="navbar.js"></script>
+    
 </body>
+
 </html>

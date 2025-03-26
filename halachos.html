@@ -5,60 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Halachos - Congregation Bais Yisroel</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="mobile.css" media="screen and (max-width: 768px)">
 </head>
 <body>
     <div class="outer-container">
-        <div class="container">
-            <header>
-                <nav class="navbar">
-                    <div class="logo" onclick="toggleNavbar()">
-                        <a href="index.html">
-                            <img id="logo-img" src="images/Bais-Yisroel-logo.png" alt="Congregation Bais Yisroel">
-                        </a>                
-                    </div>
-                    <ul class="nav-menu">
-                        <li><a href="index.html" class="nav-button">Home</a></li>
-                        <li><a href="events.html" class="nav-button">Events</a></li>
-                        <li><a href="information.html" class="nav-button">Information</a></li>
-                        <li><a href="community.html" class="nav-button">Community</a></li>
-                        <li><a href="subscribe.html" class="nav-button highlighted">Subscribe</a></li>
-                        <li><a href="https://members.baisyisroel.org/payment.php" class="nav-button highlighted">Donate</a></li>
-                    </ul>
-                </nav>                
-            </header>
-        </div>
+        <header>
+            <nav class="navbar">
+                <div id="menu-toggle" class="logo">
+                    <img id="logo-img" src="images/Bais-Yisroel-logo.png" alt="Congregation Bais Yisroel">
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-button">Home</a></li>
+                    <li><a href="information.html" class="nav-button">Information</a></li>
+                    <li><a href="community.html" class="nav-button">Community</a></li>
+                    <li><a href="subscribe.html" class="nav-button">Subscribe</a></li>
+                    <li><a href="https://members.baisyisroel.org/payment" class="nav-button">Donate</a></li>
+                </ul>
+            </nav>
+        </header>
         
         <div class="separate">
-            <div class="content-wrapper">
-                <div class="separate">
-                    <div class="content-wrapper">
-                        <section class="events">
-                            <h2>Halachos</h2>
-                            <ul>
-                                <a href="https://www.baisyisroel.org/documents/5784/Halachos%20of%20Pesach%20and%20Sefira%205784.pdf" target="_blank" class="nav-button active">Pesach Halachos</a>
-                                <a href="https://www.baisyisroel.org/documents/5784/Shavuos%20halachos%205784.pdf" target="_blank" class="nav-button active">Shavous Halachos</a>
-                                <a href="https://drive.google.com/drive/u/0/folders/1Kzw4Dr1Dyoyb9nUH6Zzd-7A9VZZYiKL9" target="_blank" class="nav-button active">Daf Yomi Shiur - Downloads</a>
-                            </ul>
-                        </section>
-                        <section class="events">
-                            <h2>Shabbos/Yom Tov Halachos with Rabbi Eli Markowitz</h2>
-                            <ul>
-                                <a href="https://1drv.ms/u/s!Ah-yZSHArjC_iIQBXOL3rEfO9HppmQ?e=4mvQ0F" target="_blank" class="nav-button active">Warming Food on Shabbos Pt. 1, Audio</a>
-                                <a href="https://drive.google.com/file/d/1JZdq6W-T7N4NDhC_En01mnXlOGhzbDmL/view" target="_blank" class="nav-button active">Warming Food on Shabbos Pt. 2, Audio</a>
-                                <a href="https://drive.google.com/file/d/1O4hh-cqEPzh-oelkLUf-JKKOmVJc-wsH/view" target="_blank" class="nav-button active">Warming Food on Shabbos Pt. 3, Audio</a>
-                                <a href="https://drive.google.com/folderview?id=1Lbdpk7buRdjEhuRNys-y5FqKfCb2GtnL" target="_blank" class="nav-button active">Warming Food on Shabbos Pt. 4, Audio</a>
-                            </ul>
-                        </section>
-                    </div>
+
+            <section class="halachos">
+                <h2>Halachos</h2>
+                <div class="visitors-buttons">
+                    <ul>
+                        <li><a href="https://www.baisyisroel.org/documents/5784/Halachos%20of%20Pesach%20and%20Sefira%205784.pdf" target="_blank" class="nav-button-comm">Pesach Halachos</a></li>
+                        <li><a href="https://www.baisyisroel.org/documents/5784/Shavuos%20halachos%205784.pdf" target="_blank" class="nav-button-comm">Shavous Halachos</a></li>
+                        <li><a href="https://drive.google.com/drive/u/0/folders/1Kzw4Dr1Dyoyb9nUH6Zzd-7A9VZZYiKL9" target="_blank" class="nav-button-comm">Daf Yomi Shiur - Downloads</a></li>
+                    </ul>
                 </div>
-            </div>
+            </section>
+            
+            <section class="shabbos">
+                <h2>Shabbos/Yom Tov Halachos</h2>
+                <p>with Rabbi Eli Markowitz</p>
+                <div class="shabbos-dvar-buttons">
+                    <ul class="event-list">
+                        <li><a href="https://1drv.ms/u/s!Ah-yZSHArjC_iIQBXOL3rEfO9HppmQ?e=4mvQ0F" target="_blank" class="nav-button-comm">Warming Food on Shabbos Pt. 1, Audio</a></li>
+                        <li><a href="https://drive.google.com/file/d/1JZdq6W-T7N4NDhC_En01mnXlOGhzbDmL/view" target="_blank" class="nav-button-comm">Warming Food on Shabbos Pt. 2, Audio</a></li>
+                        <li><a href="https://drive.google.com/file/d/1O4hh-cqEPzh-oelkLUf-JKKOmVJc-wsH/view" target="_blank" class="nav-button-comm">Warming Food on Shabbos Pt. 3, Audio</a></li>
+                        <li><a href="https://drive.google.com/folderview?id=1Lbdpk7buRdjEhuRNys-y5FqKfCb2GtnL" target="_blank" class="nav-button-comm">Warming Food on Shabbos Pt. 4, Audio</a></li>
+                    </ul>
+                </div>
+            </section>
+
         </div>
     </div>
 
     <footer class="footer">
         <p>Congregation Bais Yisroel<br>
         4221 Sunset Boulevard, Minneapolis, MN 55416<br>
-        PH: (952)-926-7867 || <a href="mailto:office@baisyisroel.org">Office Email</a></p>
+        Phone Number: (952)-926-7867 || <a href="mailto:office@baisyisroel.org">Office Email</a></p>
     </footer>
+
+    <script src="script.js" defer></script>
+    <script src="navbar.js"></script>
+    
 </body>
 </html>

@@ -1,0 +1,277 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #e6e7e3;
+    color: #0D1B2A;
+}
+
+.outer-container {
+    width: 90%;
+    max-width: fit-content;
+    margin: 0 auto;
+    background-color: #e6e7e3;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 2rem;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+    position: relative;
+}
+
+.nav-button, .nav-button-events, .nav-button-comm {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: 0.3s ease-in-out;
+}
+/* 
+.highlighted {
+    border-radius: 5px;
+    border: 2px solid #0D1B2A;
+    border: 3px solid #415A77;
+    padding: 8px 15px;
+} */
+
+.nav-button:hover {
+    color: white;
+    background-color: #0D1B2A;
+    border: 3px solid #415A77;
+    font-size: 1.4rem;
+}
+
+.nav-button-events:hover {
+    color: white;
+    background-color: #0D1B2A;
+    border: 3px solid #415A77;
+}
+
+.nav-button-comm:hover {
+    color: white;
+    background-color: #0D1B2A;
+    border: 3px solid #415A77;
+}
+
+.highlighted:hover {
+    color: white;
+    background-color: #0D1B2A;
+    border: 3px solid #415A77;
+}
+
+.nav-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 250px;
+    background-color: #0D1B2A;
+    padding-top: 2rem;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+.nav-menu.active {
+    transform: translateX(0);
+}
+
+.menu-icon {
+    display: none;
+    cursor: pointer;
+    font-size: 2rem;
+    color: white;
+}
+
+@media screen and (max-width: 768px) {
+    .menu-icon {
+        display: block;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+    }
+    
+    .nav-menu {
+        width: 200px;
+    }
+}
+
+.logo {
+    position:static; 
+    padding-left: 12.5rem;
+}
+
+.nav-menu.active ~ .logo {
+    left: 7rem;
+}
+
+.logo img {
+    display: block;
+    width: 100px;
+}
+
+.left-image {
+    display: none;
+}
+
+.left-image img {
+    display: none;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    gap: 1rem;
+    padding-right: 2rem;
+}
+
+.separate {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.subscribe-form {
+    width: 70%;
+    padding: 50px;
+    background-color: #e6e7e3;
+    border: 2px solid #0D1B2A;
+    border-radius: 5px;
+}
+
+.subscribe-form h2 {
+    color: #415A77;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+.subscribe-form p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+p.permission {
+    font-size: 1rem;
+}
+
+.separate-community {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    gap: 1rem;
+}
+
+.about-box {
+    border-radius: 5px;
+    text-align: justify;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.visitors-buttons, .community-buttons,
+ .events-buttons, .info-buttons,
+ .info-dvar-buttons, .events-dvar-buttons,
+ .halachos-dvar-buttons, .shabbos-dvar-buttons {
+    flex: 1;
+    padding: 1.5rem;
+    background-color: #e6e7e3;
+    font-size: larger;
+    text-align: center;
+}
+
+.about-box, .visitors, .community, .events, .info, .halachos, .shabbos {
+    flex: 1;
+    padding: 1.5rem;
+    background-color: #e6e7e3;
+    border: 2px solid #0D1B2A;
+    border-radius: 5px;
+    font-size: larger;
+    text-align: justify;
+}
+
+.about-box h2, .visitors h2, .community h2,
+ .events h2, .info h2, .halachos h2, .shabbos h2 {
+    color: #415A77;
+    margin-bottom: 1rem;
+    font-size: 2.3rem;
+    text-align: center;
+}
+
+.community ul, .visitors ul, .events ul,
+ .info ul, .halachos ul, .shabbos ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.community ul li a, .visitors ul li a, .events ul li a,
+ .info ul li a, .halachos ul li a, .shabbos ul li a,
+ .halachos ul a, .shabbos ul a{
+    display: block;
+    background-color: #e6e7e3;
+    color: #0D1B2A;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.community ul li a:hover, .visitors ul li a:hover, 
+.events ul li a:hover, .info ul li a:hover,
+.halachos ul a:hover, .shabbos ul a:hover {
+    background-color: #415A77;
+    color: white;
+}
+
+.separate-events {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    gap: 1rem;
+}
+
+.events {
+    padding: 2px;
+    padding-bottom: 4px;
+    padding-top: 2px;
+}
+
+.footer {
+    margin-top: 4px;
+    background-color: #e6e7e3;
+    color: #0D1B2A;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.footer a {
+    color: #0D1B2A;
+    text-decoration: underline;
+}
+
+.footer a:hover {
+    text-decoration: none;
+}
