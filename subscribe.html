@@ -5,80 +5,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Subscribe - Congregation Bais Yisroel</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="mobile.css" media="screen and (max-width: 768px)">
 </head>
 <body>
     <div class="outer-container">
         <div class="container">
             <header>
                 <nav class="navbar">
-                    <div class="logo" onclick="toggleNavbar()">
-                        <a href="index.html">
-                            <img id="logo-img" src="images/Bais-Yisroel-logo.png" alt="Congregation Bais Yisroel">
-                        </a>                
+                    <div id="menu-toggle" class="logo">
+                        <img id="logo-img" src="images/Bais-Yisroel-logo.png" alt="Congregation Bais Yisroel">
                     </div>
                     <ul class="nav-menu">
                         <li><a href="index.html" class="nav-button">Home</a></li>
-                        <li><a href="events.html" class="nav-button">Events</a></li>
                         <li><a href="information.html" class="nav-button">Information</a></li>
                         <li><a href="community.html" class="nav-button">Community</a></li>
-                        <li><a href="subscribe.html" class="nav-button highlighted">Subscribe</a></li>
-                        <li><a href="https://members.baisyisroel.org/payment.php" class="nav-button highlighted">Donate</a></li>
+                        <li><a href="subscribe.html" class="nav-button">Subscribe</a></li>
+                        <li><a href="https://members.baisyisroel.org/payment" class="nav-button">Donate</a></li>
                     </ul>
-                </nav>                
+                </nav>
             </header>
         </div>
         
         <div class="separate">
-            <div class="content-wrapper">
-                <section class="subscribe-form">
-                    <h2>Subscribe to the Bais Yisroel Shabbos Observer</h2>
-                    <p>Get the Bais Yisroel Newsletter in your inbox.</p>
-                    <form class="ctct-form-custom" id="ctct_form_0" autocomplete="on" data-qe-id="form-data">
-                        <div id="email_address_field_0" class="ctct-form-field">
-                            <label for="email_address_0" class="ctct-form-label ctct-form-required">Email</label>
-                            <input id="email_address_0" type="email" name="email_address" maxlength="80" class="ctct-form-element">
-                        </div>
-                        <div id="first_name_field_0" class="ctct-form-field">
-                            <label for="first_name_0" class="ctct-form-label">First Name</label>
-                            <input id="first_name_0" type="text" name="first_name" maxlength="50" class="ctct-form-element">
-                        </div>
-                        <div id="last_name_field_0" class="ctct-form-field">
-                            <label for="last_name_0" class="ctct-form-label">Last Name</label>
-                            <input id="last_name_0" type="text" name="last_name" maxlength="50" class="ctct-form-element">
-                        </div>
-                        <div id="street_field_0" class="ctct-form-field">
-                            <label for="street_0" class="ctct-form-label">Street</label>
-                            <input id="street_0" type="text" name="street" maxlength="255" class="ctct-form-element">
-                        </div>
-                        <div id="city_field_0" class="ctct-form-field">
-                            <label for="city_0" class="ctct-form-label">City</label>
-                            <input id="city_0" type="text" name="city" maxlength="50" class="ctct-form-element">
-                        </div>
-                        <div id="state_field_0" class="ctct-form-field">
-                            <label for="state_0" class="ctct-form-label">State/Province</label>
-                            <input id="state_0" type="text" name="state" maxlength="50" class="ctct-form-element">
-                        </div>
-                        <div id="postal_code_field_0" class="ctct-form-field">
-                            <label for="postal_code_0" class="ctct-form-label">Postal Code</label>
-                            <input id="postal_code_0" type="text" name="postal_code" maxlength="50" class="ctct-form-element">
-                        </div>
-                        <div id="gdpr_text">
-                            <p class="permission">By submitting this form, you are consenting to receive marketing emails from: Bais Yisroel, 4221 Sunset Blvd, Minneapolis, MN, 55416, US, http://www.baisyisroel.org. You can revoke your consent to receive emails at any time by using the SafeUnsubscribe® link, found at the bottom of every email.
-                                <a href="https://www.constantcontact.com/legal/service-provider" target="_blank" rel="noopener noreferrer">Emails are serviced by Constant Contact.</a>
-                            </p>
-                        </div>
-                        <button type="submit" class="ctct-form-button">Subscribe to the BYSO</button>
-                        <div class="g-recaptcha" id="ctct_recaptcha_0" data-sitekey="6LfHrSkUAAAAAPnKk5cT6JuKlKPzbwyTYuO8--Vr" data-size="invisible"></div>
-                    </form>
-                </section>
-            </div>
+
+            <section class="subscribe-form">
+                <h2>Subscribe to the Bais Yisroel Shabbos Observer</h2>
+                <p>Get the Bais Yisroel Newsletter in your inbox.</p>
+                <form class="ctct-form-custom" id="ctct_form_0" autocomplete="on" data-qe-id="form-data">
+                    <div id="email_address_field_0" class="ctct-form-field">
+                        <label for="email_address_0" class="ctct-form-label ctct-form-required">Email</label>
+                        <input id="email_address_0" type="email" name="email_address" maxlength="80" class="ctct-form-element">
+                    </div>
+                    <div id="first_name_field_0" class="ctct-form-field">
+                        <label for="first_name_0" class="ctct-form-label">First Name</label>
+                        <input id="first_name_0" type="text" name="first_name" maxlength="50" class="ctct-form-element">
+                    </div>
+                    <div id="last_name_field_0" class="ctct-form-field">
+                        <label for="last_name_0" class="ctct-form-label">Last Name</label>
+                        <input id="last_name_0" type="text" name="last_name" maxlength="50" class="ctct-form-element">
+                    </div>
+                    <div id="street_field_0" class="ctct-form-field">
+                        <label for="street_0" class="ctct-form-label">Street</label>
+                        <input id="street_0" type="text" name="street" maxlength="255" class="ctct-form-element">
+                    </div>
+                    <div id="city_field_0" class="ctct-form-field">
+                        <label for="city_0" class="ctct-form-label">City</label>
+                        <input id="city_0" type="text" name="city" maxlength="50" class="ctct-form-element">
+                    </div>
+                    <div id="state_field_0" class="ctct-form-field">
+                        <label for="state_0" class="ctct-form-label">State/Province</label>
+                        <input id="state_0" type="text" name="state" maxlength="50" class="ctct-form-element">
+                    </div>
+                    <div id="postal_code_field_0" class="ctct-form-field">
+                        <label for="postal_code_0" class="ctct-form-label">Postal Code</label>
+                        <input id="postal_code_0" type="text" name="postal_code" maxlength="50" class="ctct-form-element">
+                    </div>
+                    <div id="gdpr_text">
+                        <p class="permission">By submitting this form, you are consenting to receive marketing emails from: Bais Yisroel, 4221 Sunset Blvd, Minneapolis, MN, 55416, US, http://www.baisyisroel.org. You can revoke your consent to receive emails at any time by using the SafeUnsubscribe® link, found at the bottom of every email.
+                            <a href="https://www.constantcontact.com/legal/service-provider" target="_blank" rel="noopener noreferrer">Emails are serviced by Constant Contact.</a>
+                        </p>
+                    </div>
+                    <button type="submit" class="ctct-form-button">Subscribe to the BYSO</button>
+                    <div class="g-recaptcha" id="ctct_recaptcha_0" data-sitekey="6LfHrSkUAAAAAPnKk5cT6JuKlKPzbwyTYuO8--Vr" data-size="invisible"></div>
+                </form>
+            </section>
+
         </div>        
     </div>
 
     <footer class="footer">
         <p>Congregation Bais Yisroel<br>
         4221 Sunset Boulevard, Minneapolis, MN 55416<br>
-        PH: 952-926-7867 || <a href="mailto:office@baisyisroel.org">E-MAIL OFFICE</a></p>
+        Phone Number: 952-926-7867 || <a href="mailto:office@baisyisroel.org">E-MAIL OFFICE</a></p>
     </footer>
+
+    <script src="script.js" defer></script>
+    <script src="navbar.js"></script>
+    
 </body>
 </html>
