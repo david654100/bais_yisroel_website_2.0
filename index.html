@@ -13,7 +13,8 @@
 
         <header>
             <nav class="navbar">
-                <div id="menu-toggle" class="logo">
+                <div id="menu-toggle" class="menu-icon">☰</div>
+                <div class="logo">
                     <img id="logo-img" src="images/Bais-Yisroel-logo.png" alt="Congregation Bais Yisroel">
                 </div>
                 <ul class="nav-menu">
@@ -59,7 +60,7 @@
 
                     <div class="schedule-buttons">
                         <a href="#" class="button full-schedule">Full Schedule</a>
-                        <a href="#" class="button shabbos-observer">Shabbos Observer Weekly Newsletter</a>
+                        <a id="byso" href="#" class="button shabbos-observer" onclick="downloadLatestFileFromBYSO()">Shabbos Observer Weekly Newsletter</a>
                         <a href="https://members.baisyisroel.org/payment.php" target="_blank" class="button donate">Donate</a>
                         <a href="https://members.baisyisroel.org/renovation_campaign_5784" target="_blank" class="button renovation-campaign">Renovation Campaign</a>
                     </div>
@@ -77,6 +78,8 @@
 
     <script src="script.js" defer></script>
     <script src="navbar.js"></script>
+    <script src="files.js"></script>
+    <script src="https://alcdn.msauth.net/browser/2.28.0/js/msal-browser.min.js"></script>
 
 </body>
 
