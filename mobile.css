@@ -93,7 +93,7 @@ header {
     display: none;
     cursor: pointer;
     font-size: 2rem;
-    color: white;
+    color: #0D1B2A;
 }
 
 @media screen and (max-width: 768px) {

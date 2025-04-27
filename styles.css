@@ -90,13 +90,6 @@ header {
     border: 3px solid #0D1B2A;
 }
 
-.hamburger {
-    display: none;
-    font-size: 2rem;
-    color: white;
-    cursor: pointer;
-}
-
 @media screen and (max-width: 768px) {
     .nav-menu {
         display: none;
@@ -116,6 +109,10 @@ header {
     .hamburger {
         display: block;
     }
+}
+
+.menu-icon {
+    display: none;
 }
 
 .separate {
@@ -205,7 +202,7 @@ header {
 }
 
 .button:hover {
-    background-color: #1B263B;
+    background-color: #0D1B2A;
 }
 
 .footer {
