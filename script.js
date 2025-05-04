@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const todayDate = today.toISOString().split('T')[0];
         const dayOfWeek = today.getDay();
 
-        const apiUrl = `https://cors-anywhere.herokuapp.com/https://us-central1-bais-website.cloudfunctions.net/bais_shul_times?date=${todayDate}`;
+        const apiUrl = `https://corsproxy.io/?url=https://us-central1-bais-website.cloudfunctions.net/bais_shul_times?date=${todayDate}`;
 
         try {
             const response = await fetch(apiUrl);
