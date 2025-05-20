@@ -123,3 +123,36 @@ document.addEventListener("DOMContentLoaded", function () {
     setWeekRange();
     fetchScheduleItems();
 });
+
+document.getElementById("byso").addEventListener("click", async () => {
+    const spinner = document.getElementById("spinner");
+    try {
+      spinner.style.display = "block";
+  
+      const response = await fetch("http://localhost:3001/api/sharepoint/recent-file");
+  
+      if (!response.ok) {
+        throw new Error("File download failed.");
+      }
+  
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+  
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "BYSO_Newsletter.pdf";
+      document.body.appendChild(link);
+      link.click();
+  
+      link.remove();
+      window.URL.revokeObjectURL(url);
+  
+    } catch (err) {
+      console.error("Error downloading file:", err);
+      alert("Failed to download the newsletter.");
+    } finally {
+      spinner.style.display = "none"; 
+    }
+  });
+  
+  
