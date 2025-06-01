@@ -115,14 +115,6 @@ header {
     display: none;
 }
 
-.separate {
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-    padding-left: 4rem;
-    padding-right: 3rem;
-}
-
 .refresh-image {
     padding-right: 2rem;
 }
@@ -297,11 +289,29 @@ p.permission {
     background-color: #415A77;
 }
 
-.separate {
+.separate-index {
     display: flex;
     justify-content: center;
     align-items: stretch;
     gap: 1rem;
+    padding-left: 9rem;
+    padding-right: 3rem;
+}
+
+.separate-dvar {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 1rem;
+    padding-left: 2%;
+}
+
+.separate-halachos {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 1rem;
+    padding-left: 10%;
 }
 
 .separate-community {
@@ -309,6 +319,22 @@ p.permission {
     justify-content: center;
     align-items: stretch;
     gap: 1rem;
+}
+
+.separate-info {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 1rem;
+    padding-left: 10%;
+}
+
+.separate-subscribe {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 1rem;
+    padding-left: 10%;
 }
 
 .about-box {

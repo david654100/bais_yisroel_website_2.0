@@ -1,14 +1,15 @@
 require("dotenv").config();
-const express = require("express");
-const axios = require("axios");
-const cors = require("cors");
+import express, { json } from "express";
+import { post, get } from "axios";
+import cors from "cors";
 
 const app = express();
-// app.use(cors());
+
 app.use(cors({
   origin: "https://david654100.github.io"
 }));
-app.use(express.json());
+
+app.use(json());
 
 const {
   TENANT_ID,
@@ -34,20 +35,18 @@ async function getAccessToken() {
     scope: "https://graph.microsoft.com/.default",
   });
 
-  console.log("[Step 1] Requesting new access token...");
-  const tokenRes = await axios.post(tokenUrl, tokenParams.toString(), {
+  const tokenRes = await post(tokenUrl, tokenParams.toString(), {
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
   });
 
   const accessToken = tokenRes.data.access_token;
-  const expiresIn = tokenRes.data.expires_in; // in seconds
+  const expiresIn = tokenRes.data.expires_in;
 
   if (!accessToken) throw new Error("Access token was not received.");
 
   cachedToken = accessToken;
   tokenExpiresAt = now + (expiresIn - 60) * 1000;
 
-  console.log("[Step 1] Access token acquired and cached.");
   return accessToken;
 }
 
@@ -55,12 +54,16 @@ app.get("/api/sharepoint/recent-file", async (req, res) => {
   try {
     const accessToken = await getAccessToken();
 
-    const folderPath = "BY Observer/BYSO Files/BYSO";
+    const folderName = req.query.folder;
+    if (!folderName) {
+      return res.status(400).json({ error: "Missing folder query parameter." });
+    }
+
+    const folderPath = `BY Observer/BYSO Files/${folderName.replace(/_/g, " ")}`;
 
     const filesUrl = `https://graph.microsoft.com/v1.0/drives/${SHAREPOINT_DRIVE_ID}/root:/${encodeURIComponent(folderPath)}:/children?$orderby=lastModifiedDateTime desc&$top=1`;
 
-    console.log("[Step 2] Fetching most recent file from folder:", folderPath);
-    const fileRes = await axios.get(filesUrl, {
+    const fileRes = await get(filesUrl, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
         Accept: "application/json",
@@ -69,24 +72,20 @@ app.get("/api/sharepoint/recent-file", async (req, res) => {
 
     const files = fileRes.data.value;
     if (!files || files.length === 0) {
-      console.error("[Step 2] No files found.");
       return res.status(404).json({ error: "No files found in the specified folder." });
     }
 
     const file = files[0];
-    console.log("[Step 2] Most recent file:", file.name);
-
     const downloadUrl = file["@microsoft.graph.downloadUrl"];
     if (!downloadUrl) throw new Error("Download URL is missing.");
 
-    console.log("[Step 3] Downloading file content...");
-    const contentRes = await axios.get(downloadUrl, {
+    const contentRes = await get(downloadUrl, {
       responseType: "arraybuffer",
     });
 
     res.set("Content-Type", contentRes.headers["content-type"] || "application/octet-stream");
+    res.set("Content-Disposition", `inline; filename="${file.name}"`);
     res.send(contentRes.data);
-    console.log("[Step 3] File content sent successfully.");
   } catch (err) {
     const errorMsg = err.response?.data?.error?.message || err.message;
     console.error("Graph API error:", errorMsg);
@@ -96,5 +95,5 @@ app.get("/api/sharepoint/recent-file", async (req, res) => {
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+  console.log(`✅ Server running at http://localhost:${PORT}`);
 });

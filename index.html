@@ -28,7 +28,7 @@
         </header>            
               
 
-        <div class="separate">
+        <div class="separate-index">
 
                 <div class="refresh-image">
                     <div class="left-image">
@@ -41,6 +41,8 @@
                     <div class="schedule-details">
                         <p><strong>Today's Date:</strong> <span id="getTodayDate">Loading...</span></p>
                         <p><strong>Hebrew Date:</strong> <span id="hebrewDate">Loading...</span></p>
+                        <p><strong>This Weeks Parsha:</strong> <span id="parsha">Loading...</span></p>
+
                         <p><strong>Early Shacharis:</strong> <span id="earlyMorningShacharis">Loading...</span></p>
                         <p><strong>Shacharis:</strong> <span id="morningShacharis">Loading...</span></p>
                         <p id="earlyMinchaRow" style="display: none;">
@@ -53,20 +55,29 @@
                         <p id="fastEndsRow" style="display: none;">
                             <strong>Fast Ends:</strong> <span id="fastEnds">Loading...</span>
                         </p>
-                        <p><strong>Early Erev Shabbos Mincha:</strong> <span id="earlyErevShabbosMincha">Loading...</span></p>
-                        <p><strong>Early Erev Shabbos Candle Lighting:</strong> <span id="earlycandleLighting">Loading...</span></p>
+                        <p><strong>Early Erev Shabbos Mincha:</strong> <span id="earlyShabbosMincha">Loading...</span></p>
+                        <p><strong>Early Shabbos Candle Lighting:</strong> <span id="earlyCandleLighting">Loading...</span></p>
 
-                        <p><strong>Erev Shabbos Mincha:</strong> <span id="erevShabbosMincha">Loading...</span></p>
+                        <p><strong>Erev Shabbos Mincha:</strong> <span id="minchaErevShabbos">Loading...</span></p>
                         <p><strong>Erev Shabbos Candle Lighting:</strong> <span id="candleLighting">Loading...</span></p>
 
-                        <p><strong>Parsha:</strong> <span id="parsha">Loading...</span></p>
+                        <p id="erevYomtovRow" style="display: none;">
+                        <strong>Erev Yom Tov Candle Lighting / Over:</strong> 
+                        <span id="erevYomtovCandleLighting">Loading...</span> - 
+                        <span id="yomtovEnd">Loading...</span>
+                        </p>
+
                         <p><strong>Havdalah:</strong> <span id="havdalah">Loading...</span></p>
                     </div>
 
                     <div class="schedule-buttons">
-                        <a href="#" class="button full-schedule">Full Schedule</a>
-                        <button id="byso" class="button shabbos-observer">Shabbos Observer Weekly Newsletter</button>
-                            <div id="spinner" style="
+                        <button id="zmanim" class="button shabbos-observer" data-folder="Zmanim">Download Zmanim</button>
+                        <button id="byso" class="button shabbos-observer" data-folder="BYSO">Download Shabbos Observer Weekly Newsletter</button>
+
+                        <a href="https://members.baisyisroel.org/payment.php" target="_blank" class="button donate">Donate</a>
+                        <a href="https://members.baisyisroel.org/renovation_campaign_5784" target="_blank" class="button renovation-campaign">Renovation Campaign</a>
+                        
+                        <div id="spinner" style="
                             display:none;
                             position:fixed;
                             top:50%;
@@ -78,8 +89,6 @@
                             border-radius: 8px;">
                                 <img src="images/spinny.webp" alt="Loading..." style="width:100px; height:auto;" />
                             </div>
-                        <a href="https://members.baisyisroel.org/payment.php" target="_blank" class="button donate">Donate</a>
-                        <a href="https://members.baisyisroel.org/renovation_campaign_5784" target="_blank" class="button renovation-campaign">Renovation Campaign</a>
                     </div>
                 </section>
 
