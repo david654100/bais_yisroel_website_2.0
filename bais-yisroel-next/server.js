@@ -176,6 +176,35 @@ app.get("/api/sharepoint/recent-file", async (req, res) => {
   }
 });
 
+app.get("/api/sharepoint/list-folders", async (req, res) => {
+  try {
+    const token = await getAccessToken();
+    const folderPath = req.query.path || "";
+    const baseUrl = `https://graph.microsoft.com/v1.0/drives/${SHAREPOINT_DRIVE_ID}/root${folderPath ? `:/${folderPath}` : ""}:/children`;
+
+    console.log(`[List] Requesting: ${baseUrl}`);
+
+    const response = await axios.get(baseUrl, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    const items = response.data.value.map((item) => ({
+      name: item.name,
+      isFolder: !!item.folder,
+      modified: item.lastModifiedDateTime,
+      path: item.parentReference?.path,
+    }));
+
+    res.json({ path: folderPath || "/", items });
+  } catch (err) {
+    console.error("Folder listing failed:", err.message);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
 // Step 4: Start server
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
