@@ -2,27 +2,36 @@ require("dotenv").config();
 const express = require("express");
 const axios = require("axios");
 const cors = require("cors");
-
+const fs = require("fs");
+const path = require("path");
 
 const app = express();
-app.use(cors({ origin: "https://david654100.github.io" }));
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 
 const {
   TENANT_ID,
   CLIENT_ID,
   CLIENT_SECRET,
-  SHAREPOINT_DRIVE_ID
+  SHAREPOINT_DRIVE_ID,
+  PORT = 3001,
 } = process.env;
 
 let cachedToken = null;
 let tokenExpiresAt = 0;
+
+function log(message) {
+  const logLine = `[${new Date().toISOString()}] ${message}\n`;
+  console.log(message);
+  fs.appendFileSync(path.join(__dirname, "debug.log"), logLine);
+}
 
 // Step 1: Get access token
 async function getAccessToken() {
   const now = Date.now();
   if (cachedToken && now < tokenExpiresAt) return cachedToken;
 
+  log("[Auth] Requesting new access token...");
   const response = await axios.post(
     `https://login.microsoftonline.com/${TENANT_ID}/oauth2/v2.0/token`,
     new URLSearchParams({
@@ -36,30 +45,28 @@ async function getAccessToken() {
 
   cachedToken = response.data.access_token;
   tokenExpiresAt = now + (response.data.expires_in - 60) * 1000;
+  log("[Auth] Access token acquired.");
   return cachedToken;
 }
 
-//Step 2
+// Step 2: Get most recently modified file
 async function getMostRecentFile(folderPath, accessToken) {
   let files = [];
-  // let nextUrl = `https://graph.microsoft.com/v1.0/drives/${SHAREPOINT_DRIVE_ID}/root:/${encodeURIComponent(folderPath)}:/children?$top=200`;
   let nextUrl = `https://graph.microsoft.com/v1.0/drives/${SHAREPOINT_DRIVE_ID}/root:/${folderPath}:/children?$top=200`;
 
-
   while (nextUrl) {
+    log(`[Graph] Fetching: ${nextUrl}`);
     const res = await axios.get(nextUrl, {
       headers: { Authorization: `Bearer ${accessToken}` },
     });
 
-    console.log("✅ Raw page from Graph:");
     if (!res.data.value || res.data.value.length === 0) {
-      console.log("❌ No items returned in this page.");
+      log("❌ No items returned in this page.");
     }
 
     res.data.value.forEach((f) => {
-      console.log(
-        `- ${f.name} | type: ${f.folder ? "folder" : "file"} | modified: ${f.lastModifiedDateTime}`
-      );
+      const type = f.folder ? "folder" : "file";
+      log(`- ${f.name} | type: ${type} | modified: ${f.lastModifiedDateTime}`);
     });
 
     files.push(...res.data.value);
@@ -69,18 +76,13 @@ async function getMostRecentFile(folderPath, accessToken) {
   const onlyFiles = files.filter((f) => f.file);
   if (onlyFiles.length === 0) throw new Error("No files found.");
 
-  console.log("✅ Files filtered (only files):");
-  onlyFiles.forEach((f) => {
-    console.log(`- ${f.name} | Modified: ${f.lastModifiedDateTime}`);
-  });
-
   onlyFiles.sort((a, b) => {
     const dateDiff = new Date(b.lastModifiedDateTime) - new Date(a.lastModifiedDateTime);
     return dateDiff !== 0 ? dateDiff : b.name.localeCompare(a.name);
   });
 
   const mostRecent = onlyFiles[0];
-  console.log(`[Step 2] Most recent file: ${mostRecent.name}`);
+  log(`[Recent] Most recent file: ${mostRecent.name}`);
 
   const fileContent = await axios.get(mostRecent["@microsoft.graph.downloadUrl"], {
     responseType: "arraybuffer",
@@ -93,72 +95,14 @@ async function getMostRecentFile(folderPath, accessToken) {
   };
 }
 
-
-// // Step 2: Get most recently modified file in a folder (recursive paging)
-// async function getMostRecentFile(folderPath, accessToken) {
-//   let files = [];
-//   let nextUrl = `https://graph.microsoft.com/v1.0/drives/${SHAREPOINT_DRIVE_ID}/root:/${encodeURIComponent(folderPath)}:/children?$top=200`;
-
-//   while (nextUrl) {
-//     const res = await axios.get(nextUrl, {
-//       headers: { Authorization: `Bearer ${accessToken}` },
-//     });
-
-//     files.push(...res.data.value);
-//     // Right after getting a page of results:
-//     console.log("Raw page from Graph:");
-//     res.data.value.forEach(f => {
-//       console.log(`- ${f.name} | type: ${f.folder ? "folder" : "file"} | modified: ${f.lastModifiedDateTime}`);
-//     });
-
-    
-//     nextUrl = res.data["@odata.nextLink"];
-//   }
-
-//   // const onlyFiles = files.filter(f => f.file);
-//   // if (onlyFiles.length === 0) throw new Error("No files found.");
-//   // const onlyFiles = files.filter(f => f.file);
-
-//   const onlyFiles = files.filter(f => f.file);
-//   console.log("Files in folder:");
-//   onlyFiles.forEach(f => {
-//     console.log(`- ${f.name} | Modified: ${f.lastModifiedDateTime}`);
-//   });
-
-
-//   console.log("Files in folder:", onlyFiles.map(f => ({
-//     name: f.name,
-//     modified: f.lastModifiedDateTime,
-//   })));
-
-
-//   // onlyFiles.sort((a, b) => new Date(b.lastModifiedDateTime) - new Date(a.lastModifiedDateTime));
-//   onlyFiles.sort((a, b) => {
-//     const dateDiff = new Date(b.lastModifiedDateTime) - new Date(a.lastModifiedDateTime);
-//     return dateDiff !== 0 ? dateDiff : b.name.localeCompare(a.name);
-//   });
-  
-
-//   const mostRecent = onlyFiles[0];
-//   const fileContent = await axios.get(mostRecent["@microsoft.graph.downloadUrl"], {
-//     responseType: "arraybuffer",
-//   });
-
-//   return {
-//     buffer: fileContent.data,
-//     fileName: mostRecent.name,
-//     contentType: fileContent.headers["content-type"],
-//   };
-// }
-
-// Step 3: Endpoint
+// API: /api/sharepoint/recent-file
 app.get("/api/sharepoint/recent-file", async (req, res) => {
   try {
     const folder = req.query.folder;
     if (!folder) return res.status(400).json({ error: "Missing folder query parameter." });
 
     const folderPath = `BY Observer/BYSO Files/${folder.replace(/_/g, " ")}`;
-    console.log("Requesting folder:", folderPath);
+    log(`[Route] Requesting folder: ${folderPath}`);
 
     const token = await getAccessToken();
     const file = await getMostRecentFile(folderPath, token);
@@ -171,19 +115,20 @@ app.get("/api/sharepoint/recent-file", async (req, res) => {
 
     res.send(file.buffer);
   } catch (err) {
-    console.error(err.message);
+    log(`❌ Error: ${err.message}`);
     res.status(500).json({ error: err.message });
   }
 });
 
+// API: /api/sharepoint/list-folders
 app.get("/api/sharepoint/list-folders", async (req, res) => {
   try {
-    const token = await getAccessToken();
     const folderPath = req.query.path || "";
     const baseUrl = `https://graph.microsoft.com/v1.0/drives/${SHAREPOINT_DRIVE_ID}/root${folderPath ? `:/${folderPath}` : ""}:/children`;
 
-    console.log(`[List] Requesting: ${baseUrl}`);
+    log(`[List] Listing: ${baseUrl}`);
 
+    const token = await getAccessToken();
     const response = await axios.get(baseUrl, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -197,16 +142,14 @@ app.get("/api/sharepoint/list-folders", async (req, res) => {
       path: item.parentReference?.path,
     }));
 
+    log(`[List] Found ${items.length} items.`);
     res.json({ path: folderPath || "/", items });
   } catch (err) {
-    console.error("Folder listing failed:", err.message);
+    log(`❌ Folder listing failed: ${err.message}`);
     res.status(500).json({ error: err.message });
   }
 });
 
-
-// Step 4: Start server
-const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-  console.log(`✅ Server running on http://localhost:${PORT}`);
+  log(`✅ Server running on http://localhost:${PORT}`);
 });
