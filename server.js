@@ -1,22 +1,18 @@
-require("dotenv").config();
-import express, { json } from "express";
-import { post, get } from "axios";
+import dotenv from "dotenv";
+dotenv.config();
+
+import express from "express";
+import axios from "axios";
 import cors from "cors";
 
+
 const app = express();
+app.use(cors({ origin: "https://david654100.github.io" }));
+app.use(express.json());
 
-app.use(cors({
-  origin: "https://david654100.github.io"
-}));
-
-app.use(json());
-
-const {
-  TENANT_ID,
-  CLIENT_ID,
-  CLIENT_SECRET,
-  SHAREPOINT_DRIVE_ID,
-} = process.env;
+app.get("/", (req, res) => {
+  res.send("✅ SharePoint file API is alive");
+});
 
 let cachedToken = null;
 let tokenExpiresAt = 0;
@@ -27,73 +23,97 @@ async function getAccessToken() {
     return cachedToken;
   }
 
-  const tokenUrl = `https://login.microsoftonline.com/${TENANT_ID}/oauth2/v2.0/token`;
-  const tokenParams = new URLSearchParams({
-    grant_type: "client_credentials",
-    client_id: CLIENT_ID,
-    client_secret: CLIENT_SECRET,
-    scope: "https://graph.microsoft.com/.default",
+  const tokenUrl = `https://login.microsoftonline.com/${process.env.TENANT_ID}/oauth2/v2.0/token`;
+
+  const params = new URLSearchParams();
+  params.append("grant_type", "client_credentials");
+  params.append("client_id", process.env.CLIENT_ID);
+  params.append("client_secret", process.env.CLIENT_SECRET);
+  params.append("scope", "https://graph.microsoft.com/.default");
+
+  const response = await axios.post(tokenUrl, params.toString(), {
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
   });
 
-  const tokenRes = await post(tokenUrl, tokenParams.toString(), {
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-  });
+  cachedToken = response.data.access_token;
+  tokenExpiresAt = now + (response.data.expires_in - 60) * 1000;
 
-  const accessToken = tokenRes.data.access_token;
-  const expiresIn = tokenRes.data.expires_in;
-
-  if (!accessToken) throw new Error("Access token was not received.");
-
-  cachedToken = accessToken;
-  tokenExpiresAt = now + (expiresIn - 60) * 1000;
-
-  return accessToken;
+  return cachedToken;
 }
+
+
+async function getMostRecentFile(folderPath, accessToken) {
+  let files = [];
+  let url = `https://graph.microsoft.com/v1.0/drives/${process.env.SHAREPOINT_DRIVE_ID}/root:/${encodeURIComponent(folderPath)}:/children`;
+
+  while (url) {
+    const res = await axios.get(url, {
+      headers: { Authorization: `Bearer ${accessToken}` }
+    });
+
+    files.push(...res.data.value);
+    url = res.data["@odata.nextLink"];
+  }
+
+  const onlyFiles = files.filter(item => item.file);
+
+  console.log(`📄 Fetching from: ${folderPath}`);
+  console.log("📄 Fetched files:");
+
+  onlyFiles.forEach(file => {
+    console.log(`- ${file.name} | Modified: ${file.lastModifiedDateTime}`);
+  });
+
+  if (onlyFiles.length === 0) {
+    throw new Error("No files found in the folder.");
+  }
+
+  onlyFiles.sort((a, b) => new Date(b.lastModifiedDateTime) - new Date(a.lastModifiedDateTime));
+  return onlyFiles[0];
+}
+
+
+app.get("/api/token-test", async (req, res) => {
+  try {
+    const token = await getAccessToken();
+    res.json({ message: "Access token retrieved successfully ✅", token });
+  } catch (err) {
+    console.error("❌ Token error:", err.response?.data || err.message);
+    res.status(500).json({ error: err.response?.data || err.message });
+  }
+});
 
 app.get("/api/sharepoint/recent-file", async (req, res) => {
   try {
+    const folder = req.query.folder;
+    if (!folder) return res.status(400).json({ error: "Missing folder query parameter" });
+
     const accessToken = await getAccessToken();
 
-    const folderName = req.query.folder;
-    if (!folderName) {
-      return res.status(400).json({ error: "Missing folder query parameter." });
-    }
+    const folderPath = `BY Observer/BYSO Files/${folder.replace(/_/g, " ")}`;
+    
+    const latestFile = await getMostRecentFile(folderPath, accessToken);
 
-    const folderPath = `BY Observer/BYSO Files/${folderName.replace(/_/g, " ")}`;
-
-    const filesUrl = `https://graph.microsoft.com/v1.0/drives/${SHAREPOINT_DRIVE_ID}/root:/${encodeURIComponent(folderPath)}:/children?$orderby=lastModifiedDateTime desc&$top=1`;
-
-    const fileRes = await get(filesUrl, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-        Accept: "application/json",
-      },
+    const fileResponse = await axios.get(latestFile["@microsoft.graph.downloadUrl"], {
+      responseType: "arraybuffer"
     });
 
-    const files = fileRes.data.value;
-    if (!files || files.length === 0) {
-      return res.status(404).json({ error: "No files found in the specified folder." });
-    }
-
-    const file = files[0];
-    const downloadUrl = file["@microsoft.graph.downloadUrl"];
-    if (!downloadUrl) throw new Error("Download URL is missing.");
-
-    const contentRes = await get(downloadUrl, {
-      responseType: "arraybuffer",
+    res.set({
+      "Cache-Control": "no-store",
+      "Content-Type": fileResponse.headers["content-type"] || "application/pdf",
+      "Content-Disposition": `inline; filename="${latestFile.name}"`
     });
 
-    res.set("Content-Type", contentRes.headers["content-type"] || "application/octet-stream");
-    res.set("Content-Disposition", `inline; filename="${file.name}"`);
-    res.send(contentRes.data);
+    res.send(fileResponse.data);
   } catch (err) {
-    const errorMsg = err.response?.data?.error?.message || err.message;
-    console.error("Graph API error:", errorMsg);
-    res.status(500).json({ error: errorMsg });
+    console.error("❌ Error fetching file:", err.message);
+    res.status(500).json({ error: err.message });
   }
 });
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-  console.log(`✅ Server running at http://localhost:${PORT}`);
+  console.log(`✅ Server listening on http://localhost:${PORT}`);
 });
