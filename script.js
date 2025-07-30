@@ -160,41 +160,42 @@ document.addEventListener("DOMContentLoaded", function () {
     fetchScheduleItems();
 });
 
-document.querySelectorAll("button[data-folder]").forEach(button => {
-    button.addEventListener("click", async () => {
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll("button[data-folder]").forEach(button => {
+      button.addEventListener("click", async () => {
         const folder = button.dataset.folder;
         const spinner = document.getElementById("spinner");
-
+        if (spinner) spinner.style.display = "block";
+  
         try {
-            spinner.style.display = "block";
-
-            const response = await fetch(`https://bais-yisroel-website-2-0.onrender.com/api/sharepoint/recent-file?folder=${encodeURIComponent(folder)}`);
-            if (!response.ok) {
-                throw new Error("File download failed.");
-            }
-
-            const blob = await response.blob();
-            const url = window.URL.createObjectURL(blob);
-
-            const disposition = response.headers.get("Content-Disposition");
-            let fileName = `${folder}_File.pdf`;
-            if (disposition && disposition.includes("filename=")) {
-                fileName = disposition.split("filename=")[1].replace(/"/g, "");
-            }
-
-            const link = document.createElement("a");
-            link.href = url;
-            link.download = fileName;
-            document.body.appendChild(link);
-            link.click();
-
-            link.remove();
-            window.URL.revokeObjectURL(url);
+          const response = await fetch(
+            `https://bais-yisroel-website-2-0.onrender.com/api/sharepoint/recent-file?folder=${encodeURIComponent(folder)}&t=${Date.now()}`
+          );
+          if (!response.ok) throw new Error("File download failed.");
+  
+          const blob = await response.blob();
+          const url = window.URL.createObjectURL(blob);
+  
+          const disposition = response.headers.get("Content-Disposition");
+          let fileName = `${folder}_File.pdf`;
+          if (disposition && disposition.includes("filename=")) {
+            fileName = disposition.split("filename=")[1].replace(/"/g, "");
+          }
+  
+          const link = document.createElement("a");
+          link.href = url;
+          link.download = fileName;
+          document.body.appendChild(link);
+          link.click();
+          link.remove();
+          window.URL.revokeObjectURL(url);
         } catch (err) {
-            console.error("Error downloading file:", err);
-            alert("Failed to download file from folder: " + folder);
+          console.error("Error downloading file:", err);
+          alert("Failed to download file from folder: " + folder);
         } finally {
-            spinner.style.display = "none";
+          if (spinner) spinner.style.display = "none";
         }
+      });
     });
-});
+  });
+  
