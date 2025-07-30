@@ -469,3 +469,37 @@ iframe {
     height: 100%;
     border: 0;
 }
+
+button.link-style {
+    all: unset; /* remove all default button styling */
+    color: #0D1B2A;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: 0.3s ease-in-out;
+  }
+  
+  button.link-style:hover {
+    color: white;
+    background-color: #415A77;
+  }
+  
+  .button.front {
+    background-color: #415A77; /* no white box */
+    border: none;                  /* remove borders */
+    color: white;                /* match your link/button color */
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .button.front:hover {
+    background-color: #0D1B2A;
+    color: white;
+  }
+  
