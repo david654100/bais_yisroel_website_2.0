@@ -66,10 +66,39 @@
                             <a href="https://www.constantcontact.com/legal/service-provider" target="_blank" rel="noopener noreferrer">Emails are serviced by Constant Contact.</a>
                         </p>
                     </div>
-                    <button type="submit" class="ctct-form-button">Subscribe to the BYSO</button>
+                    <button type="submit" class="ctct-form-button" disabled>Subscribe to the BYSO</button>
                     <div class="g-recaptcha" id="ctct_recaptcha_0" data-sitekey="6LfHrSkUAAAAAPnKk5cT6JuKlKPzbwyTYuO8--Vr" data-size="invisible"></div>
                 </form>
             </section>
+            <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                  const form = document.getElementById("ctct_form_0");
+                  const email = document.getElementById("email_address_0");
+                  const firstName = document.getElementById("first_name_0");
+                  const lastName = document.getElementById("last_name_0");
+                  const postalCode = document.getElementById("postal_code_0");
+                  const submitBtn = form.querySelector("button[type='submit']");
+              
+                  function validateForm() {
+                    const isEmailValid = email.validity.valid;
+                    const isFirstNameFilled = firstName.value.trim() !== "";
+                    const isLastNameFilled = lastName.value.trim() !== "";
+                    const isPostalCodeFilled = postalCode.value.trim() !== "";
+              
+                    if (isEmailValid && isFirstNameFilled && isLastNameFilled && isPostalCodeFilled) {
+                      submitBtn.disabled = false;
+                    } else {
+                      submitBtn.disabled = true;
+                    }
+                  }
+              
+                  // Validate on input changes
+                  [email, firstName, lastName, postalCode].forEach(input =>
+                    input.addEventListener("input", validateForm)
+                  );
+                });
+              </script>
+              
 
         </div>        
     </div>
