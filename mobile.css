@@ -1,277 +1,303 @@
+/* mobile.css (screen and max-width: 768px)
+   Cleaned up for true mobile behavior:
+   - Fix outer container sizing (no fit-content shrink)
+   - Make navbar layout stable (no brittle padding-left)
+   - Keep the side-drawer menu behavior
+   - Avoid hover font-size jumps that cause layout shifting on mobile
+*/
+
 body {
-    font-family: 'Open Sans', sans-serif;
-    background-color: #e6e7e3;
-    color: #0D1B2A;
+  font-family: 'Open Sans', sans-serif;
+  background-color: #e6e7e3;
+  color: #0D1B2A;
 }
 
+/* ✅ Fix: responsive container that doesn’t shrink-wrap */
 .outer-container {
-    width: 90%;
-    max-width: fit-content;
-    margin: 0 auto;
-    background-color: #e6e7e3;
-    display: flex;
-    flex-wrap: wrap;
+  width: min(1200px, 100% - 2rem);
+  margin: 0 auto;
+  background-color: #e6e7e3;
+  display: block; /* don’t flex the whole page wrapper */
 }
 
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 2rem;
 }
 
+/* Navbar: stable mobile layout */
 .navbar {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: 1rem;
-    position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* center logo */
+  width: 100%;
+  padding: 1rem;
+  position: relative; /* allows absolutely-positioned menu icon */
 }
 
-.nav-button, .nav-button-events, .nav-button-comm {
-    text-decoration: none;
-    color: white;
-    font-size: 1.2rem;
-    font-weight: bold;
-    padding: 10px 15px;
-    border-radius: 5px;
-    transition: 0.3s ease-in-out;
-}
-/* 
-.highlighted {
-    border-radius: 5px;
-    border: 2px solid #0D1B2A;
-    border: 3px solid #415A77;
-    padding: 8px 15px;
-} */
-
-.nav-button:hover {
-    color: white;
-    background-color: #0D1B2A;
-    border: 3px solid #415A77;
-    font-size: 1.4rem;
-}
-
-.nav-button-events:hover {
-    color: white;
-    background-color: #0D1B2A;
-    border: 3px solid #415A77;
-}
-
-.nav-button-comm:hover {
-    color: white;
-    background-color: #0D1B2A;
-    border: 3px solid #415A77;
-}
-
-.highlighted:hover {
-    color: white;
-    background-color: #0D1B2A;
-    border: 3px solid #415A77;
-}
-
-.nav-menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 250px;
-    background-color: #0D1B2A;
-    padding-top: 2rem;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease-in-out;
-    display: flex;
-    flex-direction: column;
-    z-index: 1000;
-}
-
-.nav-menu.active {
-    transform: translateX(0);
-}
-
+/* Hamburger icon shown on mobile */
 .menu-icon {
-    display: none;
-    cursor: pointer;
-    font-size: 2rem;
-    color: #0D1B2A;
+  display: block;
+  cursor: pointer;
+  font-size: 2rem;
+  color: #0D1B2A;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1100; /* above drawer */
 }
 
-@media screen and (max-width: 768px) {
-    .menu-icon {
-        display: block;
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-    }
-    
-    .nav-menu {
-        width: 200px;
-    }
-}
-
+/* ✅ Fix: remove brittle logo padding-left */
 .logo {
-    position:static; 
-    padding-left: 12.5rem;
-}
-
-.nav-menu.active ~ .logo {
-    left: 7rem;
+  position: static;
+  padding-left: 0;
 }
 
 .logo img {
-    display: block;
-    width: 100px;
+  display: block;
+  width: 100px;
+  height: auto;
 }
 
+/* Side-drawer menu */
+.nav-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 250px;
+  background-color: #0D1B2A;
+  padding-top: 2rem;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  margin: 0;
+}
+
+.nav-menu.active {
+  transform: translateX(0);
+}
+
+/* Slightly narrower drawer on smaller phones */
+@media screen and (max-width: 768px) {
+  .nav-menu {
+    width: 200px;
+  }
+}
+
+/* Nav links/buttons */
+.nav-button,
+.nav-button-events,
+.nav-button-comm {
+  text-decoration: none;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: 0.3s ease-in-out;
+}
+
+/* ✅ Fix: no font-size growth on hover (prevents layout jump on mobile) */
+.nav-button:hover,
+.nav-button-events:hover,
+.nav-button-comm:hover,
+.highlighted:hover {
+  color: white;
+  background-color: #0D1B2A;
+  border: 3px solid #415A77;
+}
+
+/* Optional: if your JS relies on this, keep it, but don’t move logo around */
+.nav-menu.active ~ .logo {
+  left: auto;
+}
+
+/* Mobile: hide left image (only applies because this file is mobile-only) */
 .left-image {
-    display: none;
+  display: none;
 }
 
 .left-image img {
-    display: none;
+  display: none;
 }
 
+/* Content layout wrappers */
 .content-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: stretch;
-    gap: 1rem;
-    padding-right: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  gap: 1rem;
+  padding-right: 2rem;
 }
 
 .separate {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: stretch;
-    padding-left: 1rem;
-    padding-right: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
+/* Subscribe form */
 .subscribe-form {
-    width: 70%;
-    padding: 50px;
-    background-color: #e6e7e3;
-    border: 2px solid #0D1B2A;
-    border-radius: 5px;
+  width: 100%;
+  padding: 24px;
+  background-color: #e6e7e3;
+  border: 2px solid #0D1B2A;
+  border-radius: 5px;
 }
 
 .subscribe-form h2 {
-    color: #415A77;
-    margin-bottom: 20px;
-    font-size: 1.8rem;
+  color: #415A77;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
 }
 
 .subscribe-form p {
-    margin-bottom: 20px;
-    font-size: 1.1rem;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
 }
 
 p.permission {
-    font-size: 1rem;
+  font-size: 1rem;
 }
 
+/* Community / page sections */
 .separate-community {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: stretch;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  gap: 1rem;
 }
 
 .about-box {
-    border-radius: 5px;
-    text-align: justify;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+  border-radius: 5px;
+  text-align: justify;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
-.visitors-buttons, .community-buttons,
- .events-buttons, .info-buttons,
- .info-dvar-buttons, .events-dvar-buttons,
- .halachos-dvar-buttons, .shabbos-dvar-buttons {
-    flex: 1;
-    padding: 1.5rem;
-    background-color: #e6e7e3;
-    font-size: larger;
-    text-align: center;
+.visitors-buttons,
+.community-buttons,
+.events-buttons,
+.info-buttons,
+.info-dvar-buttons,
+.events-dvar-buttons,
+.halachos-dvar-buttons,
+.shabbos-dvar-buttons {
+  flex: 1;
+  padding: 1.5rem;
+  background-color: #e6e7e3;
+  font-size: larger;
+  text-align: center;
 }
 
-.about-box, .visitors, .community, .events, .info, .halachos, .shabbos {
-    flex: 1;
-    padding: 1.5rem;
-    background-color: #e6e7e3;
-    border: 2px solid #0D1B2A;
-    border-radius: 5px;
-    font-size: larger;
-    text-align: justify;
+.about-box,
+.visitors,
+.community,
+.events,
+.info,
+.halachos,
+.shabbos {
+  flex: 1;
+  padding: 1.5rem;
+  background-color: #e6e7e3;
+  border: 2px solid #0D1B2A;
+  border-radius: 5px;
+  font-size: larger;
+  text-align: justify;
 }
 
-.about-box h2, .visitors h2, .community h2,
- .events h2, .info h2, .halachos h2, .shabbos h2 {
-    color: #415A77;
-    margin-bottom: 1rem;
-    font-size: 2.3rem;
-    text-align: center;
+.about-box h2,
+.visitors h2,
+.community h2,
+.events h2,
+.info h2,
+.halachos h2,
+.shabbos h2 {
+  color: #415A77;
+  margin-bottom: 1rem;
+  font-size: 2.0rem; /* slightly smaller for mobile */
+  text-align: center;
 }
 
-.community ul, .visitors ul, .events ul,
- .info ul, .halachos ul, .shabbos ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+.community ul,
+.visitors ul,
+.events ul,
+.info ul,
+.halachos ul,
+.shabbos ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.community ul li a, .visitors ul li a, .events ul li a,
- .info ul li a, .halachos ul li a, .shabbos ul li a,
- .halachos ul a, .shabbos ul a{
-    display: block;
-    background-color: #e6e7e3;
-    color: #0D1B2A;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+.community ul li a,
+.visitors ul li a,
+.events ul li a,
+.info ul li a,
+.halachos ul li a,
+.shabbos ul li a,
+.halachos ul a,
+.shabbos ul a {
+  display: block;
+  background-color: #e6e7e3;
+  color: #0D1B2A;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
 
-.community ul li a:hover, .visitors ul li a:hover, 
-.events ul li a:hover, .info ul li a:hover,
-.halachos ul a:hover, .shabbos ul a:hover {
-    background-color: #415A77;
-    color: white;
+.community ul li a:hover,
+.visitors ul li a:hover,
+.events ul li a:hover,
+.info ul li a:hover,
+.halachos ul a:hover,
+.shabbos ul a:hover {
+  background-color: #415A77;
+  color: white;
 }
 
 .separate-events {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: stretch;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  gap: 1rem;
 }
 
 .events {
-    padding: 2px;
-    padding-bottom: 4px;
-    padding-top: 2px;
+  padding: 2px;
+  padding-bottom: 4px;
+  padding-top: 2px;
 }
 
+/* Footer */
 .footer {
-    margin-top: 4px;
-    background-color: #e6e7e3;
-    color: #0D1B2A;
-    text-align: center;
-    border-radius: 5px;
-    padding: 5px;
+  margin-top: 4px;
+  background-color: #e6e7e3;
+  color: #0D1B2A;
+  text-align: center;
+  border-radius: 5px;
+  padding: 10px;
 }
 
 .footer a {
-    color: #0D1B2A;
-    text-decoration: underline;
+  color: #0D1B2A;
+  text-decoration: underline;
 }
 
 .footer a:hover {
-    text-decoration: none;
+  text-decoration: none;
 }

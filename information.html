@@ -34,23 +34,22 @@
                     <h2>Information</h2>
                     <section class="info-buttons">
                         <ul>
-                            <li>
-                                <a href="https://docs.google.com/forms/d/e/1FAIpQLSduAu3mxKqjzvxtSBUDGs-6zGZc8vAxAWYrOhn0l51JmlWpJw/viewform?vc=0&c=0&w=1&flr=0"
-                                    target="_blank" class="nav-button-events active">Camp Achim Jr. Grade 1-4, Registration 2024</a>
-                            </li>
-                            <li>
-                                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdzcsxTYyu1fIp8dzxFcKDw320YECOxqsMiMYOMnN1nkzW9Rw/viewform?vc=0&c=0&w=1&flr=0"
-                                    target="_blank" class="nav-button-events active">Camp Achim Sr. Division Grade 5-8, Registration 2024</a>
-                            </li>
-                            <li>
-                                <a href="https://docs.google.com/forms/d/1I8qcV5pVYkm9GZ87dC-19zGR6dgJLiqXlLAptT09dNI/viewform?edit_requested=true"
-                                    target="_blank" class="nav-button-events active">Camp Ashira Grade 1-8, Registration 2024</a>
-                            </li>
-                            <li>
-                                <a href="https://www.baisyisroel.org/documents/5784/zmanim_5784.pdf"
-                                    target="_blank" class="nav-button-events active">Zmanim 5784 PDF</a>
-                            </li>
+                            <li><button id="campachimjr" class="link-style" data-folder="CampAchimJr.1-4">Camp Achim Jr. 1-4 Forms</button></li>
+                            <li><button id="campachimsr" class="link-style" data-folder="CampAchimSr.5-8">Camp Achim Sr. 5-8 Forms</button></li>
+                            <li><button id="campashira" class="link-style" data-folder="CampAshira">Camp Ashira Forms</button></li>
                         </ul>
+                        <div id="spinner" style="
+                            display:none;
+                            position:fixed;
+                            top:50%;
+                            left:50%;
+                            transform:translate(-50%, -50%);
+                            z-index:9999;
+                            background-color: rgba(255, 255, 255, 0.8);
+                            padding: 20px;
+                            border-radius: 8px;">
+                            <img src="images/spinny.webp" alt="Loading..." style="width:100px; height:auto;" />
+                        </div>
                     </section>
                 </section>
 
@@ -60,7 +59,7 @@
                         <ul>
                             <li><a href="dvar.html" class="nav-button-events active">Dvar Torahs</a></li>
                             <li><a href="halachos.html" class="nav-button-events active">Halachos</a></li>
-                            <li><a href="https://www.baisyisroel.org/documents/Sponsorshipposter.jpg" class="nav-button-events active">Sponsorship Opportunities</a></li>
+                            <li><button id="sponsor"  class="link-style" data-folder="Sponsor">Sponsorship Opportunities</button></li>
                         </ul>
                     </section>
                 </section>
@@ -77,6 +76,7 @@
     </footer>
 
     <script src="script.js" defer></script>
+    <script src="server.js" defer></script>
     <script src="navbar.js"></script>
     
 </body>

@@ -34,12 +34,29 @@
                     <h2>Dvar Torahs</h2>
                     <section class="info-dvar-buttons">
                         <ul class="dvar-list">
-                            <li><a href="https://www.baisyisroel.org/documents/5784/BYSO%20Shemini%20Hachodesh%20Eclipse%205784.pdf" target="_blank" class="nav-button-comm">Pesach 5784</a></li>
-                            <li><a href="https://www.baisyisroel.org/documents/5784/BYSO%20Vort%20Bamidbar%205784.pdf" target="_blank" class="nav-button-comm">Shavous 5784</a></li>
-                            <li><a href="https://www.baisyisroel.org/documents/5784/R-A-Lipschutz-in%20Mpls-Matzav-in-EY.mp3" target="_blank" class="nav-button-comm">Rabbi Avrohom Lipshutz Shlit"A: Asifa of Chizuk - Eretz Yisroel, Audio</a></li>
-                            <li><a href="https://www.baisyisroel.org/documents/5784/2024-01-23%20R'%20Sruli%20Fried%20in%20Mpls.mp3" target="_blank" class="nav-button-comm">Rabbi Sruli Fried Shlit"A: Unlocking Your Power, Audio</a></li>
+                            <li><button id="purimdt"  class="link-style" data-folder="Purim Dvar Torah">Purim Dvar Torah</button></li>
+                            <li><button id="pesachdt"  class="link-style" data-folder="Pesach Dvar Torah">Pesach Dvar Torah</button></li>
+                            <li><button id="shavuosdt"  class="link-style" data-folder="Shavuos Dvar Torah">Shavous Dvar Torah Halachos</button></li>
+                            <li><button id="succosdt"  class="link-style" data-folder="Succos Dvar Torah">Succos Dvar Torah Halachos</button></li>
+                            <li><button id="chanukahdt"  class="link-style" data-folder="Chanukah Dvar Torah">Chanukah Dvar Torah Halachos</button></li>
+
+                            <li><button id="Lipshutz"  class="link-style" data-folder="Lipshutz">Rabbi Avrohom Lipshutz Shlit"A: Asifa of Chizuk - Eretz Yisroel, Audio</button></li>
+                            <li><button id="Fried"  class="link-style" data-folder="Fried">Rabbi Sruli Fried Shlit"A: Unlocking Your Power, Audio</button></li>
+
                             <li><a href="https://drive.google.com/drive/u/0/folders/1Kzw4Dr1Dyoyb9nUH6Zzd-7A9VZZYiKL9" target="_blank" class="nav-button-comm">Daf Yomi Shiur, Downloads</a></li>
                         </ul>
+                        <div id="spinner" style="
+                            display:none;
+                            position:fixed;
+                            top:50%;
+                            left:50%;
+                            transform:translate(-50%, -50%);
+                            z-index:9999;
+                            background-color: rgba(255, 255, 255, 0.8);
+                            padding: 20px;
+                            border-radius: 8px;">
+                            <img src="images/spinny.webp" alt="Loading..." style="width:100px; height:auto;" />
+                        </div>
                     </section>
                 </section>
 
@@ -106,6 +123,7 @@
 
     <script src="script.js" defer></script>
     <script src="navbar.js"></script>
+    <script src="server.js" defer></script>
 
 </body>
 

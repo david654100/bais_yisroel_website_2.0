@@ -31,7 +31,7 @@
                 <h2>About: Congregation Bais Yisroel</h2>
                 <p>
                     Our shul provides an opportunity for every Jew to grow closer to Hashem (G-D) and His Torah. 
-                    We emPhone Numberasize the study of Torah and live according to its guidelines and teachings. 
+                    We emphasize the study of Torah and live according to its guidelines and teachings. 
                     This wisdom adds a new dimension of success, understanding, and purpose to each moment and every detail of life. 
                     Bais Yisroel offers boys' and girls' Orthodox youth groups for grades 1-8.
                 </p>
@@ -44,15 +44,22 @@
                         <li><a href="https://www.google.com/maps/d/u/0/viewer?client=firefox-a&ie=UTF8&oe=UTF-8&channel=s&hl=en&om=1&msa=0&ll=44.948915%2C-93.334265&spn=0.020046%2C0.027552&z=15&mid=1BqPhone NumberJCIbFq7k2LJKmwDVb1c7gWc" 
                             target="_blank" class="nav-button-comm">Shul/Community Map</a>
                         </li>
-                        <li>
-                            <button id="visitor" class="link-style" data-folder="New Visitor">Visitor Information</button>
-                        </li>
-                        <li><a href="https://mnkosher.org" 
-                            target="_blank" class="nav-button-comm">Minnesota Kosher</a></li>
-                        <li>
-                            <button id="eiruv" class="link-style" data-folder="Eiruv">Eiruv Map</button>
-                        </li>      
+                        <li><button id="visitor" class="link-style" data-folder="New Visitor">Visitor Information</button></li>
+                        <li><a href="https://mnkosher.org" target="_blank" class="nav-button-comm">Minnesota Kosher</a></li>
+                        <li><button id="eiruv" class="link-style" data-folder="Eiruv">Eiruv Map</button></li>      
                     </ul>
+                    <div id="spinner" style="
+                            display:none;
+                            position:fixed;
+                            top:50%;
+                            left:50%;
+                            transform:translate(-50%, -50%);
+                            z-index:9999;
+                            background-color: rgba(255, 255, 255, 0.8);
+                            padding: 20px;
+                            border-radius: 8px;">
+                            <img src="images/spinny.webp" alt="Loading..." style="width:100px; height:auto;" />
+                        </div>
                 </section>
             </section>
         
@@ -63,15 +70,9 @@
                         <li>
                             <button id="tehillim" class="link-style" data-folder="Tehillim">Download Tehillim List</button>
                         </li>
-                        <li><a href="https://www.baisyisroel.org/documents/TheBikurCholimofMinneapolisMN.pdf" 
-                            target="_blank" class="nav-button-comm">Bikur Cholim</a>
-                        </li>
-                        <li><a href="https://www.baisyisroel.org/documents/MinnesotaHalachicLivingWill.pdf" 
-                            target="_blank" class="nav-button-comm">Health Care Halacha</a>
-                        </li>
-                        <li><a href="https://www.baisyisroel.org/documents/data/pdf/Gmach.pdf" 
-                            target="_blank" class="nav-button-comm">Gemach</a>
-                        </li>
+                        <li><button id="bikurcholim"  class="link-style" data-folder="Bikur Cholim">Bikur Cholim</button></li>
+                        <li><button id="healthcarehalacha"  class="link-style" data-folder="Health Care Halacha">Health Care Halacha</button></li>
+                        <li><button id="gemach"  class="link-style" data-folder="Gemach">Gemach</button></li>
                     </ul>
                 </section>
             </section>  

@@ -311,7 +311,7 @@ p.permission {
     justify-content: center;
     align-items: stretch;
     gap: 1rem;
-    padding-left: 10%;
+    padding-left: 15%;
 }
 
 .separate-community {
@@ -326,7 +326,7 @@ p.permission {
     justify-content: center;
     align-items: stretch;
     gap: 1rem;
-    padding-left: 10%;
+    padding-left: 18%;
 }
 
 .separate-subscribe {
