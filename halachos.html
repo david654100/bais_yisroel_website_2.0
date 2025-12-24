@@ -29,14 +29,25 @@
 
             <section class="halachos">
                 <h2>Halachos</h2>
-                <div class="visitors-buttons">
-                    <ul>
-                        <!-- <li><button id="yomtovhalacha" class="button yomtovhalacha" data-folder="Yom Tov Halacha">Download Yom Tov Halachos</button></li> -->
-
-                        <li><a href="https://www.baisyisroel.org/documents/5784/Halachos%20of%20Pesach%20and%20Sefira%205784.pdf" target="_blank" class="nav-button-comm">Pesach Halachos</a></li>
-                        <li><a href="https://www.baisyisroel.org/documents/5784/Shavuos%20halachos%205784.pdf" target="_blank" class="nav-button-comm">Shavous Halachos</a></li>
-                        <li><a href="https://drive.google.com/drive/u/0/folders/1Kzw4Dr1Dyoyb9nUH6Zzd-7A9VZZYiKL9" target="_blank" class="nav-button-comm">Daf Yomi Shiur - Downloads</a></li>
-                    </ul>
+                <ul class="visitors-buttons"> 
+                    <li><button class="link-style" data-folder="Purim">Purim Halachos</button></li>
+                    <li><button class="link-style" data-folder="Pesach">Pesach Halachos</button></li>
+                    <li><button class="link-style" data-folder="Shavuos">Shavuos Halachos</button></li>
+                    <li><button class="link-style" data-folder="Succos">Succos Halachos</button></li>
+                    <li><button class="link-style" data-folder="Tsha Ba'av">Tsha Ba'av Halachos</button></li>
+                    <li><button class="link-style" data-folder="Chanukah">Chanukah Halachos</button></li>
+                </ul>
+                <div id="spinner" style="
+                    display:none;
+                    position:fixed;
+                    top:50%;
+                    left:50%;
+                    transform:translate(-50%, -50%);
+                    z-index:9999;
+                    background-color: rgba(255, 255, 255, 0.8);
+                    padding: 20px;
+                    border-radius: 8px;">
+                        <img src="images/spinny.webp" alt="Loading..." style="width:100px; height:auto;" />
                 </div>
             </section>
             
@@ -63,6 +74,7 @@
     </footer>
 
     <script src="script.js" defer></script>
+    <script src="server.js" defer></script>
     <script src="navbar.js"></script>
     
 </body>

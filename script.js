@@ -59,6 +59,25 @@ document.addEventListener("DOMContentLoaded", function () {
         const newMinutes = date.getMinutes().toString().padStart(2, "0");
         return convertTo12HourFormat(`${newHours}:${newMinutes}`);
     }    
+
+    function isBetweenPesachAndSuccos(hebrewDateStr = "") {
+        const lower = hebrewDateStr.toLowerCase();
+
+        // Pesach → Succos allowed window
+        const allowedMonths = [
+            "nisan",
+            "iyar",
+            "sivan",
+            "tammuz",
+            "av",
+            "elul",
+            "tishrei"
+        ];
+
+        // If date contains one of these months, we're in season
+        return allowedMonths.some(month => lower.includes(month));
+        }
+
     
     async function fetchScheduleItems() {
         if (!updateZmanimFlag) return;
@@ -89,10 +108,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     havdalah: convertTo12HourFormat(zmanim.havdala_time),
                     fastStarts: convertTo12HourFormat(zmanim.zmanim_alos_bais),
                     fastEnds: convertTo12HourFormat(zmanim.fast_ends),
-                    minchaErevShabbos: roundToNearest5Minutes(zmanim.candle_lighting_time),
+                    minchaErevShabbos: convertTo12HourFormat(zmanim.bais_reg_mincha_time),
                     earlyCandleLighting: convertTo12HourFormat(zmanim.zmanim_plag_hamincha_gra),
-                    earlyShabbosMincha: roundToNearest5Minutes(zmanim.zmanim_plag_hamincha_gra),
-                    erevYomtovCandleLighting: subtractMinutes(zmanim.zmanim_sunset),
+                    // earlyShabbosMincha: convertTo12HourFormat(zmanim.zmanim_plag_hamincha_gra),
+                    // erevYomtovCandleLighting: subtractMinutes(zmanim.zmanim_sunset),
                     yomtovEnd: convertTo12HourFormat(zmanim.zmanim_tzeis_50)
                 };
 
@@ -110,6 +129,38 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 const fastEndsRow = document.getElementById("fastEndsRow");
                 const fastEndsSpan = document.getElementById("fastEnds");
+
+                const earlyShabbosMinchaRow = document.getElementById("earlyShabbosMinchaRow");
+                const earlyShabbosMinchaSpan = document.getElementById("earlyShabbosMincha");
+
+                const earlyCandleLightingRow = document.getElementById("earlyCandleLightingRow");
+                const earlyCandleLightingSpan = document.getElementById("earlyCandleLighting");
+
+                const isYomTov =
+                zmanim.is_erev_yomtov ||
+                zmanim.erev_yomtov ||
+                zmanim.parsha?.toLowerCase().includes("yom");
+
+                const inSeason = isBetweenPesachAndSuccos(zmanim.hebrew_day);
+
+                // FINAL RULE
+                if (inSeason && !isYomTov) {
+                if (earlyShabbosMinchaRow && zmanim.zmanim_plag_hamincha_gra) {
+                    earlyShabbosMinchaRow.style.display = "block";
+                    earlyShabbosMinchaSpan.textContent =
+                    convertTo12HourFormat(zmanim.zmanim_plag_hamincha_gra);
+                }
+
+                if (earlyCandleLightingRow && zmanim.zmanim_plag_hamincha_gra) {
+                    earlyCandleLightingRow.style.display = "block";
+                    earlyCandleLightingSpan.textContent =
+                    convertTo12HourFormat(zmanim.zmanim_plag_hamincha_gra);
+                }
+                } else {
+                if (earlyShabbosMinchaRow) earlyShabbosMinchaRow.style.display = "none";
+                if (earlyCandleLightingRow) earlyCandleLightingRow.style.display = "none";
+                }
+
 
                 if (zmanim.is_erev_yomtov && zmanim.erev_yomtov && zmanim.zmanim_sunset) {
                     const erevYomtovRow = document.getElementById("erevYomtovRow");
