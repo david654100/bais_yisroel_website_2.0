@@ -172,7 +172,31 @@ p.permission {
     font-size: 1rem;
 }
 
+.separate-halachos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    gap: 1rem;
+}
+
+.separate-dvar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    gap: 1rem;
+}
+
 .separate-community {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    gap: 1rem;
+}
+
+.separate-info {
     display: flex;
     flex-direction: column;
     justify-content: center;
