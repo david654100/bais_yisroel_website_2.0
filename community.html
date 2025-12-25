@@ -47,12 +47,28 @@
                 <h2>Visitors</h2>
                 <section class="visitors-buttons">
                     <ul>
-                        <li><button href="https://www.google.com/maps/d/u/0/viewer?client=firefox-a&ie=UTF8&oe=UTF-8&channel=s&hl=en&om=1&msa=0&ll=44.948915%2C-93.334265&spn=0.020046%2C0.027552&z=15&mid=1BqPhone NumberJCIbFq7k2LJKmwDVb1c7gWc" 
-                            target="_blank" class="link-style">Shul/Community Map</button>
-                        </li>
                         <li><button id="visitor" class="link-style" data-folder="New Visitor">Visitor Information</button></li>
-                        <li><button href="https://mnkosher.org" target="_blank" class="link-style">Minnesota Kosher</button></li>
+                        <li>
+                            <button
+                                type="button"
+                                class="link-style"
+                                onclick="window.open('https://mnkosher.org', '_blank', 'noopener')"
+                            >
+                                Minnesota Kosher
+                            </button>
+                        </li>
                         <li><button id="eiruv" class="link-style" data-folder="Eiruv">Eiruv Map</button></li>      
+                        <li>
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1207.9731460219527!2d-93.3320946722439!3d44.949703118255975!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1766696632566!5m2!1sen!2sus"
+                                width="600"
+                                height="450"
+                                style="border:0;"
+                                allowfullscreen
+                                loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"
+                            ></iframe>
+                        </li>
                     </ul>
                     <div id="spinner" style="
                             display:none;

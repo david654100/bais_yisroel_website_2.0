@@ -67,6 +67,16 @@ header {
     display: inline-block;
 }
 
+.nav-button-events-com {
+    text-decoration: none;
+    color: #415A77;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: .5px;
+    transition: 0.3s ease-in-out;
+}
+
 /* Dropdown specific */
 .nav-button-dropdown {
     cursor: pointer;
