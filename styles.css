@@ -233,18 +233,11 @@ header {
     background-color: #f4f4f4;
     color: #0D1B2A;
     text-align: center;
-    border-radius: 1rem;
-    padding: 1rem;
-    /* border: 2px solid #0D1B2A; */
 }
 
 .footer a {
-    color: #0D1B2A;
     text-decoration: underline;
-}
-
-.footer a:hover {
-    text-decoration: none;
+    color: #0D1B2A;
 }
 
 .content-wrapper {
