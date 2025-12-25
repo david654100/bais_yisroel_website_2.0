@@ -111,7 +111,7 @@ header {
 
 .logo {
     position:static; 
-    padding-left: 12.5rem;
+    padding-left: 10.5rem;
 }
 
 .nav-menu.active ~ .logo {
@@ -173,30 +173,6 @@ p.permission {
 }
 
 .separate-community {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: stretch;
-    gap: 1rem;
-}
-
-.separate-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: stretch;
-    gap: 1rem;
-}
-
-.separate-dvar {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: stretch;
-    gap: 1rem;
-}
-
-.separate-halachos {
     display: flex;
     flex-direction: column;
     justify-content: center;
