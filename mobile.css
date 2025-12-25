@@ -1,6 +1,6 @@
 body {
     font-family: 'Open Sans', sans-serif;
-    background-color: #e6e7e3;
+    background-color: #f4f4f4;
     color: #0D1B2A;
 }
 
@@ -8,7 +8,7 @@ body {
     width: 90%;
     max-width: fit-content;
     margin: 0 auto;
-    background-color: #e6e7e3;
+    background-color: #f4f4f4;
     display: flex;
     flex-wrap: wrap;
 }
@@ -152,7 +152,7 @@ header {
 .subscribe-form {
     width: 70%;
     padding: 50px;
-    background-color: #e6e7e3;
+    background-color: #f4f4f4;
     border: 2px solid #0D1B2A;
     border-radius: 5px;
 }
@@ -217,7 +217,7 @@ p.permission {
  .halachos-dvar-buttons, .shabbos-dvar-buttons {
     flex: 1;
     padding: 1.5rem;
-    background-color: #e6e7e3;
+    background-color: #f4f4f4;
     font-size: larger;
     text-align: center;
 }
@@ -225,7 +225,7 @@ p.permission {
 .about-box, .visitors, .community, .events, .info, .halachos, .shabbos {
     flex: 1;
     padding: 1.5rem;
-    background-color: #e6e7e3;
+    background-color: #f4f4f4;
     border: 2px solid #0D1B2A;
     border-radius: 5px;
     font-size: larger;
@@ -254,7 +254,7 @@ p.permission {
  .info ul li a, .halachos ul li a, .shabbos ul li a,
  .halachos ul a, .shabbos ul a{
     display: block;
-    background-color: #e6e7e3;
+    background-color: #f4f4f4;
     color: #0D1B2A;
     text-decoration: none;
     border-radius: 5px;
@@ -284,7 +284,7 @@ p.permission {
 
 .footer {
     margin-top: 4px;
-    background-color: #e6e7e3;
+    background-color: #f4f4f4;
     color: #0D1B2A;
     text-align: center;
     border-radius: 5px;

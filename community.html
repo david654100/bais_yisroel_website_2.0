@@ -16,12 +16,18 @@
                         <img id="logo-img" src="images/Bais-Yisroel-logo.png" alt="Congregation Bais Yisroel">
                     </div>
                     <ul class="nav-menu">
-                        <li><a href="index.html" class="nav-button">Home</a></li>
-                        <li><a href="information.html" class="nav-button">Information</a></li>
-                        <li><a href="community.html" class="nav-button">Community</a></li>
-                        <li><a href="subscribe.html" class="nav-button">Subscribe</a></li>
-                        <li><a href="https://members.baisyisroel.org/payment" class="nav-button">Donate</a></li>
-                    </ul>
+                    <li><a href="index.html" class="nav-button">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a href="information.html" class="nav-button">Information</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="dvar.html" class="nav-button-dropdown">Dvar Torahs</a></li>
+                            <li><a href="halachos.html" class="nav-button-dropdown">Halachos</a></li>
+                        </ul>
+                    </li>                    
+                    <li><a href="community.html" class="nav-button">Community</a></li>
+                    <li><a href="subscribe.html" class="nav-button">Subscribe</a></li>
+                    <li><a href="https://members.baisyisroel.org/payment" class="nav-button">Donate</a></li>
+                </ul>
                 </nav>
             </header>
 
@@ -41,12 +47,12 @@
                 <h2>Visitors</h2>
                 <section class="visitors-buttons">
                     <ul>
-                        <li><a href="https://www.google.com/maps/d/u/0/viewer?client=firefox-a&ie=UTF8&oe=UTF-8&channel=s&hl=en&om=1&msa=0&ll=44.948915%2C-93.334265&spn=0.020046%2C0.027552&z=15&mid=1BqPhone NumberJCIbFq7k2LJKmwDVb1c7gWc" 
-                            target="_blank" class="nav-button-comm">Shul/Community Map</a>
+                        <li><button href="https://www.google.com/maps/d/u/0/viewer?client=firefox-a&ie=UTF8&oe=UTF-8&channel=s&hl=en&om=1&msa=0&ll=44.948915%2C-93.334265&spn=0.020046%2C0.027552&z=15&mid=1BqPhone NumberJCIbFq7k2LJKmwDVb1c7gWc" 
+                            target="_blank" class="link-style">Shul/Community Map</button>
                         </li>
-                        <li><a id="visitor" class="nav-button-events active" data-folder="New Visitor">Visitor Information</a></li>
-                        <li><a href="https://mnkosher.org" target="_blank" class="nav-button-comm">Minnesota Kosher</a></li>
-                        <li><a id="eiruv" class="nav-button-events active" data-folder="Eiruv">Eiruv Map</a></li>      
+                        <li><button id="visitor" class="link-style" data-folder="New Visitor">Visitor Information</button></li>
+                        <li><button href="https://mnkosher.org" target="_blank" class="link-style">Minnesota Kosher</button></li>
+                        <li><button id="eiruv" class="link-style" data-folder="Eiruv">Eiruv Map</button></li>      
                     </ul>
                     <div id="spinner" style="
                             display:none;
@@ -67,10 +73,10 @@
                 <h2>Community</h2>
                 <section class="community-buttons">
                     <ul>
-                        <li><a id="tehillim" class="nav-button-events active" data-folder="Tehillim">Download Tehillim List<a></li>
-                        <li><a id="bikurcholim"  class="nav-button-events active" data-folder="Bikur Cholim">Bikur Cholim</a></li>
-                        <li><a id="healthcarehalacha"  class="nav-button-events active" data-folder="Health Care Halacha">Health Care Halacha</a></li>
-                        <li><a id="gemach"  class="nav-button-events active" data-folder="Gemach">Gemach</a></li>
+                        <li><button id="tehillim" class="link-style" data-folder="Tehillim">Download Tehillim List</button></li>
+                        <li><button id="bikurcholim"  class="link-style" data-folder="Bikur Cholim">Bikur Cholim</button></li>
+                        <li><button id="healthcarehalacha"  class="link-style" data-folder="Health Care Halacha">Health Care Halacha</button></li>
+                        <li><button id="gemach"  class="link-style" data-folder="Gemach">Gemach</button></li>
                     </ul>
                 </section>
             </section>  
