@@ -10,7 +10,8 @@ body {
     margin: 0 auto;
     background-color: #e6e7e3;
     display: flex;
-  flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding-left: 2rem;
 }
 
 header {
@@ -26,18 +27,16 @@ header {
     align-items: center;
     padding: 1rem 2rem;
     background-color: #e6e7e3;
-    border-radius: 5px;
+    border-radius: 5rem;
     position: sticky;
     top: 0;
     z-index: 1000;
-    padding-left: 5rem;
+    padding-left: 11rem;
 }
 
 .logo img {
-    max-width: 120px;
-    border: 2px solid #e6e7e3;
-    padding: 3px 10px;
-    border-radius: 5px;
+    max-width: 10rem;
+    border: 1rem solid #e6e7e3;
 }
 
 .nav-menu {
@@ -57,8 +56,8 @@ header {
     color: #415A77;
     font-size: 1.2rem;
     font-weight: bold;
-    padding: 10px 15px;
-    border-radius: 5px;
+    padding: 1rem 1rem;
+    border-radius: .5rem;
     transition: 0.3s ease-in-out;
 }
 
@@ -71,7 +70,6 @@ header {
 .nav-button:hover {
     color: white;
     background-color: #0D1B2A;
-    font-size: 1.4rem;
 }
 
 .nav-button-events:hover {
@@ -87,7 +85,7 @@ header {
 .highlighted:hover {
     color: white;
     background-color: #0D1B2A;
-    border: 3px solid #0D1B2A;
+    border: .3rem solid #0D1B2A;
 }
 
 @media screen and (max-width: 768px) {
@@ -120,19 +118,23 @@ header {
 }
 
 .left-image {
-    display: inline-flex;
-    align-items: center;
+    display: flex;
     justify-content: center;
-    height: 100%;
+    align-items: center;
+    width: 105%;
+    max-height: 350px; /* control vertical size */
+    overflow: hidden;  /* enables horizontal crop */
 }
 
 .left-image img {
-    border-radius: 5px;
-    border: 2px solid #0D1B2A;
-    width: 125%;
-    height: 100%;
-    object-fit: cover; 
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+    /* border-radius: 5px; */
+    /* border: 2px solid #0D1B2A; */
 }
+
 
 .week-schedule {
     display: inline-block; 
@@ -147,26 +149,20 @@ header {
 
 .week-schedule h2 {
     color: #415A77;
-    margin-bottom: 20px;
-    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
 }
 
 .week-schedule h3 {
     color: #415A77;
-    margin-bottom: 20px;
-    padding-bottom: 5px;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
     font-size: .8rem;
 }
 
-.schedule-details {
-    margin-top: 15px;
-    margin-bottom: 20px;
-    width: fit-content;
-}
-
 .schedule-details p {
-    margin: 10px 0;
-    font-size: 1.1rem;
+    margin: 1rem 0;
+    font-size: 1.2rem;
 }
 
 .schedule-details p span {
@@ -178,15 +174,15 @@ header {
     display: flex;
     flex-direction: column;
 
-    gap: 15px;
+    gap: 1rem;
 }
 
 .button {
-    padding: 15px;
+    padding: 15rem;
     background-color: #415A77;
     color: #FFF;
     text-align: center;
-    border-radius: 5px;
+    border-radius: 5rem;
     text-decoration: none;
     font-weight: bold;
     font-size: 1rem;
@@ -198,12 +194,12 @@ header {
 }
 
 .footer {
-    margin-top: 40px;
+    margin-top: 4rem;
     background-color: #e6e7e3;
     color: #0D1B2A;
     text-align: center;
-    border-radius: 5px;
-    padding: 5px;
+    border-radius: 1rem;
+    padding: 1rem;
     /* border: 2px solid #0D1B2A; */
 }
 
@@ -227,21 +223,21 @@ header {
 }
 
 .subscribe-form {
-    width: 800px; /* Set a fixed width */
-    padding: 50px;
+    width: 50rem; /* Set a fixed width */
+    padding: 3rem;
     background-color: #e6e7e3;
-    border: 2px solid #0D1B2A;
-    border-radius: 5px;
+    border: .2rem solid #0D1B2A;
+    border-radius: 1rem;
 }
 
 .subscribe-form h2 {
     color: #415A77;
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
     font-size: 1.8rem;
 }
 
 .subscribe-form p {
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
     font-size: 1.1rem;
 }
 
@@ -256,7 +252,7 @@ p.permission {
 }
 
 .ctct-form-field {
-    margin-bottom: 15px;
+    margin-bottom: 1rem;
 }
 
 .ctct-form-label {
@@ -294,8 +290,11 @@ p.permission {
     justify-content: center;
     align-items: stretch;
     gap: 1rem;
-    padding-left: 9rem;
-    padding-right: 3rem;
+
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
 
 .separate-dvar {
@@ -303,15 +302,24 @@ p.permission {
     justify-content: center;
     align-items: stretch;
     gap: 1rem;
-    padding-left: 2%;
+
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
+
 
 .separate-halachos {
     display: flex;
     justify-content: center;
     align-items: stretch;
     gap: 1rem;
-    padding-left: 15%;
+
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
 
 .separate-community {
@@ -319,6 +327,11 @@ p.permission {
     justify-content: center;
     align-items: stretch;
     gap: 1rem;
+
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
 
 .separate-info {
@@ -326,7 +339,11 @@ p.permission {
     justify-content: center;
     align-items: stretch;
     gap: 1rem;
-    padding-left: 18%;
+
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
 
 .separate-subscribe {
@@ -334,11 +351,16 @@ p.permission {
     justify-content: center;
     align-items: stretch;
     gap: 1rem;
-    padding-left: 10%;
+
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
 
+
 .about-box {
-    border-radius: 5px;
+    border-radius: 2rem;
     font-size: 1.25rem;
     text-align: justify;
     word-wrap: break-word;
@@ -350,9 +372,10 @@ p.permission {
  .info-dvar-buttons, .events-dvar-buttons,
  .halachos-dvar-buttons, .shabbos-dvar-buttons {
     flex: 1;
-    padding: 1.5rem;
+    padding: .5rem;
     background-color: #e6e7e3;
     font-size: larger;
+    font-size: 5px;
     text-align: center;
 }
 
@@ -360,8 +383,8 @@ p.permission {
     flex: 1;
     padding: 1.5rem;
     background-color: #e6e7e3;
-    border: 2px solid #0D1B2A;
-    border-radius: 5px;
+    border: .2rem solid #0D1B2A;
+    border-radius: 1rem;
     font-size: larger;
     text-align: justify;
 }
@@ -391,7 +414,7 @@ p.permission {
     background-color: #e6e7e3;
     color: #0D1B2A;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 1rem;
     transition: background-color 0.3s ease;
 }
 
@@ -410,15 +433,15 @@ p.permission {
     flex: 1;
 }
 
-.events {
+/* .events {
     padding: 20px;
     padding-bottom: 47px;
     padding-top: 25px;
-}
-
+} */
+/* 
 .break {
     padding: 10px;
-}
+} */
 
 .collapsible {
     background-color: #e6e7e3;
@@ -431,7 +454,6 @@ p.permission {
     text-decoration: none;
     color: #0D1B2A;
     font-weight: bold;
-    padding: 8px 10px;
     border-radius: 8px;
     transition: background-color 0.3s ease, color 0.3s ease;
     font-size: 1.3rem;
@@ -503,3 +525,32 @@ button.link-style {
     color: white;
   }
   
+.spotify-embed {
+    position: relative;
+    width: 100%;
+    padding-top: 50%; /* Spotify show embed ratio */
+}
+
+.spotify-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 12px;
+}
+.share-embed {
+    position: relative;
+    width: 100%;
+    padding-bottom: 80%; /* Spotify show embed ratio */
+}
+.share-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 12px;
+}

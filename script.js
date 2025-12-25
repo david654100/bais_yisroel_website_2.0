@@ -211,6 +211,7 @@ document.addEventListener("DOMContentLoaded", function () {
     fetchScheduleItems();
 });
 
+
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll("button[data-folder]").forEach(button => {
       button.addEventListener("click", async () => {
