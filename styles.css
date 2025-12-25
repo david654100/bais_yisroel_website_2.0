@@ -11,7 +11,7 @@ body {
     background-color: #f4f4f4;
     display: flex;
     flex-wrap: wrap;
-    padding-left: 2rem;
+    /* padding-left: 2rem; */
 }
 
 header {
