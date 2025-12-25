@@ -180,6 +180,30 @@ p.permission {
     gap: 1rem;
 }
 
+.separate-dvar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    gap: 1rem;
+}
+
+.separate-halachos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    gap: 1rem;
+}
+
+.separate-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    gap: 1rem;
+}
+
 .about-box {
     border-radius: 5px;
     text-align: justify;
