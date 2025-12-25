@@ -1,6 +1,6 @@
 body {
     font-family: 'Open Sans', sans-serif;
-    background-color: #e6e7e3;
+    background-color: #f4f4f4;
     color: #0D1B2A;
 }
 
@@ -8,7 +8,7 @@ body {
     width: 90%;
     max-width: fit-content;
     margin: 0 auto;
-    background-color: #e6e7e3;
+    background-color: #f4f4f4;
     display: flex;
     flex-wrap: wrap;
     padding-left: 2rem;
@@ -21,12 +21,13 @@ header {
     padding-bottom: 2rem;
 }
 
+/* Navbar container */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    background-color: #e6e7e3;
+    background-color: #f4f4f4;
     border-radius: 5rem;
     position: sticky;
     top: 0;
@@ -34,11 +35,13 @@ header {
     padding-left: 11rem;
 }
 
+/* Logo */
 .logo img {
     max-width: 10rem;
-    border: 1rem solid #e6e7e3;
+    border: 1rem solid #f4f4f4;
 }
 
+/* Nav menu */
 .nav-menu {
     list-style: none;
     display: flex;
@@ -49,9 +52,11 @@ header {
 
 .nav-menu li {
     list-style: none;
+    position: relative; /* Needed for dropdown positioning */
 }
 
-.nav-button, .nav-button-events, .nav-button-comm {
+/* Buttons */
+.nav-button, .nav-button-events, .nav-button-comm, .nav-button-dropdown {
     text-decoration: none;
     color: #415A77;
     font-size: 1.2rem;
@@ -59,31 +64,61 @@ header {
     padding: 1rem 1rem;
     border-radius: .5rem;
     transition: 0.3s ease-in-out;
+    display: inline-block;
 }
 
-.highlighted {
-    border-radius: 5px;
-    border: 2px solid #415A77;
-    padding: 8px 15px;
+/* Dropdown specific */
+.nav-button-dropdown {
+    cursor: pointer;
 }
 
-.nav-button:hover {
+/* Hover effect */
+.nav-button:hover, 
+.nav-button-events:hover, 
+.nav-button-comm:hover, 
+.nav-button-dropdown:hover {
     color: white;
     background-color: #0D1B2A;
 }
 
-.nav-button-events:hover {
-    color: white;
-    background-color: #0D1B2A;
+/* Dropdown menu */
+.dropdown-menu {
+    list-style: none;
+    position: absolute;
+    top: 100%; /* Directly below parent */
+    left: 0;
+    background: #f4f4f4;
+    border: 1px solid #ccc;
+    display: none; /* Hidden by default */
+    min-width: 180px;
+    z-index: 1000;
+    border-radius: .5rem;
+    padding: 0;
 }
 
-.nav-button-comm:hover {
-    color: white;
+/* Dropdown items */
+.dropdown-menu li a {
+    padding: 0.8rem 1rem;
+    display: block;
+    color: #415A77;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: 0.2s;
+    font-weight: normal;
+}
+
+.dropdown-menu li a:hover {
     background-color: #0D1B2A;
+    color: #f4f4f4;
+}
+
+/* Show dropdown on hover */
+.nav-menu li:hover .dropdown-menu {
+    display: block;
 }
 
 .highlighted:hover {
-    color: white;
+    color: #f4f4f4;
     background-color: #0D1B2A;
     border: .3rem solid #0D1B2A;
 }
@@ -141,7 +176,7 @@ header {
     padding: 25px;
     height: auto;
     padding-bottom: 2.3rem;
-    background-color: #e6e7e3;
+    background-color: #f4f4f4;
     border: 2px solid #0D1B2A;
     border-radius: 5px;
     margin: 0;
@@ -195,7 +230,7 @@ header {
 
 .footer {
     margin-top: 4rem;
-    background-color: #e6e7e3;
+    background-color: #f4f4f4;
     color: #0D1B2A;
     text-align: center;
     border-radius: 1rem;
@@ -225,7 +260,7 @@ header {
 .subscribe-form {
     width: 50rem; /* Set a fixed width */
     padding: 3rem;
-    background-color: #e6e7e3;
+    background-color: #f4f4f4;
     border: .2rem solid #0D1B2A;
     border-radius: 1rem;
 }
@@ -373,7 +408,7 @@ p.permission {
  .halachos-dvar-buttons, .shabbos-dvar-buttons {
     flex: 1;
     padding: .5rem;
-    background-color: #e6e7e3;
+    background-color: #f4f4f4;
     font-size: larger;
     font-size: 5px;
     text-align: center;
@@ -382,7 +417,7 @@ p.permission {
 .about-box, .visitors, .community, .events, .info, .halachos, .shabbos {
     flex: 1;
     padding: 1.5rem;
-    background-color: #e6e7e3;
+    background-color: #f4f4f4;
     border: .2rem solid #0D1B2A;
     border-radius: 1rem;
     font-size: larger;
@@ -411,7 +446,7 @@ p.permission {
  .info ul li a, .halachos ul li a, .shabbos ul li a,
  .halachos ul a, .shabbos ul a{
     display: block;
-    background-color: #e6e7e3;
+    background-color: #f4f4f4;
     color: #0D1B2A;
     text-decoration: none;
     border-radius: 1rem;
@@ -444,7 +479,7 @@ p.permission {
 } */
 
 .collapsible {
-    background-color: #e6e7e3;
+    background-color: #f4f4f4;
     cursor: pointer;
     width: 100%;
     text-align: left;
@@ -498,8 +533,8 @@ button.link-style {
     font-size: 1.2rem;
     font-weight: bold;
     cursor: pointer;
-    padding: 10px 15px;
-    border-radius: 5px;
+    padding: 1rem 1rem;
+    border-radius: .5rem;
     transition: 0.3s ease-in-out;
   }
   
