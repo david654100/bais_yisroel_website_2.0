@@ -29,6 +29,9 @@
                     <li><a href="community.html" class="nav-button">Community</a></li>
                     <li><a href="subscribe.html" class="nav-button">Subscribe</a></li>
                     <li><a href="https://members.baisyisroel.org/payment" class="nav-button">Donate</a></li>
+                    <li><span id="user-display"></span></li>
+                    <li><button id="login-btn" class="nav-button" style="background:none; border:none; cursor:pointer;">Login</button></li>
+                    <li><button id="logout-btn" class="nav-button" style="background:none; border:none; cursor:pointer; display:none;">Logout</button></li>
                 </ul>
             </nav>
         </header>            
@@ -106,9 +109,21 @@
         </p>
     </footer>
 
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Login</h2>
+            <form id="email-login-form">
+                <input type="email" id="login-email" placeholder="Email" required style="width: 100%; padding: 10px; margin-bottom: 10px;">
+                <input type="password" id="login-password" placeholder="Password" required style="width: 100%; padding: 10px; margin-bottom: 10px;">
+                <button type="submit" class="auth-btn" style="background-color: #415A77; color: white;">Sign In</button>
+            </form>
+        </div>
+    </div>
+
     <script src="script.js" defer></script>
     <script src="navbar.js"></script>
-    <script src="server.js"></script>
+    <script type="module" src="main-auth.js"></script>
 
 </body>
 
