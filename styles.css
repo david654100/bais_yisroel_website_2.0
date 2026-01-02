@@ -245,6 +245,11 @@ header {
     text-align: center;
 }
 
+.footer p {
+    display: inline;
+    margin: 0;
+}
+
 .footer a {
     text-decoration: underline;
     color: #0D1B2A;
@@ -681,4 +686,114 @@ button.link-style {
     font-weight: bold;
     margin-right: 1rem;
     display: none;
+}
+.admin-login-btn {
+    background: none;
+    border: none;
+    color: #0D1B2A; /* Match the footer text color */
+    font-size: inherit; /* Inherit font size from parent */
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0;
+    font-family: inherit;
+    display: inline-block;
+}
+
+.admin-login-btn:hover {
+    color: #415A77; /* Slight hover effect like other links */
+}
+
+/* Footer: keep "Office Email || Admin Login" on the same line */
+.footer-email-admin {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    white-space: nowrap;
+}
+
+.footer-admin-controls {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.5rem;
+}
+
+.footer-user-display {
+    font-size: 0.8rem;
+    margin-left: 0.25rem;
+}
+
+/* Admin page */
+.admin-card {
+    display: inline-block;
+    padding: 25px;
+    height: auto;
+    background-color: #f4f4f4;
+    border: 2px solid #0D1B2A;
+    border-radius: 5px;
+    margin: 0;
+    width: 100%;
+    max-width: 700px;
+}
+
+.admin-subtitle {
+    margin-top: 0.25rem;
+    margin-bottom: 1.25rem;
+    color: #415A77;
+    font-weight: bold;
+}
+
+.admin-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+    text-align: left;
+}
+
+.admin-form input,
+.admin-form select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.admin-form-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+.admin-back-link {
+    color: #415A77;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.admin-status {
+    margin-top: 1.25rem;
+    text-align: left;
+}
+
+.admin-pre {
+    background: #0D1B2A;
+    color: #f4f4f4;
+    padding: 12px;
+    border-radius: 8px;
+    overflow: auto;
+    font-size: 0.9rem;
+}
+
+.admin-status-text {
+    margin-top: 0.5rem;
+    font-weight: bold;
+}
+
+.admin-status-text[data-kind="success"] {
+    color: #2e7d32;
+}
+
+.admin-status-text[data-kind="error"] {
+    color: #c62828;
 }

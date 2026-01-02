@@ -7,6 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeModal = document.querySelector('.close-modal');
     const loginForm = document.getElementById('email-login-form');
 
+    // Expose a safe helper so inline onclick can open the modal (fallback)
+    if (modal) {
+        window.showLoginModal = () => { modal.style.display = 'block'; };
+    }
+
     if (loginBtn) {
         loginBtn.addEventListener('click', () => {
             if (modal) modal.style.display = 'block';

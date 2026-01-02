@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Prayer Time Entry</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="mobile.css" media="screen and (max-width: 768px)">
+</head>
+
+<body>
+    <div class="outer-container">
+        <header>
+            <nav class="navbar">
+                <div id="menu-toggle" class="menu-icon">☰</div>
+                <div class="logo">
+                    <img id="logo-img" src="images/Bais-Yisroel-logo.png" alt="Congregation Bais Yisroel">
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-button">Home</a></li>
+                    <li><a href="information.html" class="nav-button">Information</a></li>
+                    <li><a href="community.html" class="nav-button">Community</a></li>
+                    <li><a href="subscribe.html" class="nav-button">Subscribe</a></li>
+                    <li><a href="https://members.baisyisroel.org/payment" class="nav-button">Donate</a></li>
+                    <li>
+                        <button id="login-btn" class="admin-login-btn" type="button" onclick="showLoginModal()">Login</button>
+                        <button id="logout-btn" class="admin-login-btn" style="display: none;">Logout</button>
+                        <span id="user-display" class="footer-user-display" style="display: none;"></span>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="separate-index">
+            <section class="admin-card">
+                <h2>Admin: Prayer Time Entry</h2>
+                <p class="admin-subtitle">Fill out the form and submit to update the database.</p>
+
+                <form id="prayer-time-form" class="admin-form">
+                    <label for="prayer-date"><strong>Date</strong></label>
+                    <input type="date" id="prayer-date" required>
+
+                    <label for="prayer-type"><strong>Prayer Type</strong></label>
+                    <select id="prayer-type" required>
+                        <option value="mincha">mincha</option>
+                        <option value="maariv">maariv</option>
+                        <option value="shachrit">shachrit</option>
+                    </select>
+
+                    <label for="prayer-time"><strong>Time</strong></label>
+                    <input type="time" id="prayer-time" step="1" required>
+
+                    <div class="admin-form-actions">
+                        <button type="submit" class="auth-btn">Submit</button>
+                        <a href="index.html" class="admin-back-link">Back to Home</a>
+                    </div>
+                </form>
+
+                <div class="admin-status">
+                    <div><strong>Payload preview</strong></div>
+                    <pre id="payload-preview" class="admin-pre">{}</pre>
+                    <div id="submit-status" class="admin-status-text"></div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Login Modal (same as index) -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Login</h2>
+            <form id="email-login-form">
+                <input type="email" id="login-email" placeholder="Email" required style="width: 100%; padding: 10px; margin-bottom: 10px;">
+                <input type="password" id="login-password" placeholder="Password" required style="width: 100%; padding: 10px; margin-bottom: 10px;">
+                <button type="submit" class="auth-btn" style="background-color: #415A77; color: white;">Sign In</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Fallback: ensure modal can open even if module listeners fail
+        window.showLoginModal = function () {
+            const modal = document.getElementById('login-modal');
+            if (modal) modal.style.display = 'block';
+        };
+    </script>
+    <script src="navbar.js"></script>
+    <script type="module" src="main-auth.js"></script>
+    <script type="module" src="admin.js"></script>
+</body>
+
+</html>
+
+

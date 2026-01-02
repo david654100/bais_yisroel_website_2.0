@@ -10,6 +10,10 @@ export function signInWithEmail(email, password) {
         .then((userCredential) => {
             console.log("User signed in:", userCredential.user);
             closeLoginModal();
+            // Send admins to the admin entry form after successful login
+            if (window.location.pathname.endsWith("index.html") || window.location.pathname === "/" || window.location.pathname === "") {
+                window.location.href = "admin.html";
+            }
         })
         .catch((error) => {
             console.error("Error signing in:", error);

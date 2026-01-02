@@ -29,9 +29,6 @@
                     <li><a href="community.html" class="nav-button">Community</a></li>
                     <li><a href="subscribe.html" class="nav-button">Subscribe</a></li>
                     <li><a href="https://members.baisyisroel.org/payment" class="nav-button">Donate</a></li>
-                    <li><span id="user-display"></span></li>
-                    <li><button id="login-btn" class="nav-button" style="background:none; border:none; cursor:pointer;">Login</button></li>
-                    <li><button id="logout-btn" class="nav-button" style="background:none; border:none; cursor:pointer; display:none;">Logout</button></li>
                 </ul>
             </nav>
         </header>            
@@ -105,7 +102,15 @@
     <footer class="footer">
         <p>Congregation Bais Yisroel<br>
             4221 Sunset Boulevard, Minneapolis, MN 55416<br>
-            Phone Number: (952)-926-7867 || <a href="mailto:office@baisyisroel.org">Office Email</a>
+            Phone Number: (952)-926-7867 ||
+            <span class="footer-email-admin">
+                <a href="mailto:office@baisyisroel.org">Office Email</a> ||
+                <span class="footer-admin-controls">
+                    <button id="login-btn" class="admin-login-btn" type="button" onclick="showLoginModal()">Admin Login</button>
+                    <button id="logout-btn" class="admin-login-btn" type="button" style="display: none;">Logout</button>
+                    <span id="user-display" class="footer-user-display" style="display: none;"></span>
+                </span>
+            </span>
         </p>
     </footer>
 
@@ -121,6 +126,13 @@
         </div>
     </div>
 
+    <script>
+        // Fallback: ensure modal can open even if module listeners fail
+        window.showLoginModal = function () {
+            const modal = document.getElementById('login-modal');
+            if (modal) modal.style.display = 'block';
+        };
+    </script>
     <script src="script.js" defer></script>
     <script src="navbar.js"></script>
     <script type="module" src="main-auth.js"></script>

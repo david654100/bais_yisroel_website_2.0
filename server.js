@@ -4,11 +4,48 @@ dotenv.config();
 import express from "express";
 import axios from "axios";
 import cors from "cors";
+import admin from "firebase-admin";
+import { getFirestore, FieldValue } from "firebase-admin/firestore";
 
 
 const app = express();
-app.use(cors({ origin: "https://david654100.github.io" }));
+
+// CORS: allow the site(s) that host the frontend
+const allowedOrigins = new Set([
+  "https://david654100.github.io",
+  "http://localhost:3000",
+  "http://localhost:5173",
+]);
+app.use(
+  cors({
+    origin(origin, cb) {
+      // allow non-browser clients (no Origin header)
+      if (!origin) return cb(null, true);
+      if (allowedOrigins.has(origin)) return cb(null, true);
+      return cb(new Error(`CORS blocked for origin: ${origin}`));
+    },
+  })
+);
 app.use(express.json());
+
+function initFirebaseAdmin() {
+  if (admin.apps.length) return;
+
+  const json = process.env.FIREBASE_SERVICE_ACCOUNT_JSON;
+  if (json) {
+    const svc = JSON.parse(json);
+    admin.initializeApp({
+      credential: admin.credential.cert(svc),
+    });
+    return;
+  }
+
+  // Fallback for environments that provide default credentials
+  admin.initializeApp();
+}
+
+initFirebaseAdmin();
+const db = getFirestore();
 
 app.get("/", (req, res) => {
   res.send("✅ SharePoint file API is alive");
@@ -110,6 +147,79 @@ app.get("/api/sharepoint/recent-file", async (req, res) => {
   } catch (err) {
     console.error("❌ Error fetching file:", err.message);
     res.status(500).json({ error: err.message });
+  }
+});
+
+function normalizeTime(t) {
+  if (typeof t !== "string") return t;
+  if (/^\d{2}:\d{2}:\d{2}$/.test(t)) return t;
+  if (/^\d{2}:\d{2}$/.test(t)) return `${t}:00`;
+  return t;
+}
+
+function isValidDateYYYYMMDD(s) {
+  return typeof s === "string" && /^\d{4}-\d{2}-\d{2}$/.test(s);
+}
+
+function extractBearer(req) {
+  const h = req.headers.authorization || "";
+  const m = h.match(/^Bearer\s+(.+)$/i);
+  return m?.[1] || null;
+}
+
+app.post("/api/admin/prayer-time", async (req, res) => {
+  try {
+    const token = req.body?.token || extractBearer(req);
+    if (!token) return res.status(401).json({ error: "Missing Firebase token" });
+
+    const decoded = await admin.auth().verifyIdToken(token);
+
+    // Optional: restrict to specific admin email(s)
+    const adminEmails = (process.env.ADMIN_EMAILS || "")
+      .split(",")
+      .map((s) => s.trim().toLowerCase())
+      .filter(Boolean);
+    if (adminEmails.length && !adminEmails.includes((decoded.email || "").toLowerCase())) {
+      return res.status(403).json({ error: "Not authorized" });
+    }
+
+    const { date, prayer_type, time } = req.body || {};
+    if (!isValidDateYYYYMMDD(date)) {
+      return res.status(400).json({ error: "Invalid 'date'. Expected YYYY-MM-DD." });
+    }
+    const allowedTypes = new Set(["mincha", "maariv", "shachrit"]);
+    if (!allowedTypes.has(prayer_type)) {
+      return res.status(400).json({ error: "Invalid 'prayer_type'." });
+    }
+    const normTime = normalizeTime(time);
+    if (typeof normTime !== "string" || !/^\d{2}:\d{2}:\d{2}$/.test(normTime)) {
+      return res.status(400).json({ error: "Invalid 'time'. Expected HH:MM or HH:MM:SS." });
+    }
+
+    const docId = `${date}_${prayer_type}`;
+    await db
+      .collection("prayer_times")
+      .doc(docId)
+      .set(
+        {
+          date,
+          prayer_type,
+          time: normTime,
+          updatedAt: FieldValue.serverTimestamp(),
+          updatedByUid: decoded.uid,
+          updatedByEmail: decoded.email || null,
+        },
+        { merge: true }
+      );
+
+    return res.json({
+      ok: true,
+      id: docId,
+      data: { date, prayer_type, time: normTime },
+    });
+  } catch (err) {
+    console.error("❌ Error saving prayer time:", err.message);
+    return res.status(500).json({ error: err.message });
   }
 });
 
